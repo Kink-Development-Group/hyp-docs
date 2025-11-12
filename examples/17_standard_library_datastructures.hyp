@@ -22,7 +22,7 @@ Focus {
   observe "Letzte Erinnerung: " + lastMemory(memories);
 
   // Map - Alle Werte verdoppeln
-  induce doubled = mapMemories(memories, suggestion(x: number): number {
+  induce doubled: number[] = mapMemories(memories, suggestion(x: number): number {
       awaken x * 2;
   });
   observe "Verdoppelt: " + doubled;
