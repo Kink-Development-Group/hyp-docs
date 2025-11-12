@@ -658,7 +658,7 @@ session MySession {
 Eine Auswahl weiterer Sprachjuwelen, die den Hypnose-Charakter abrunden:
 
 - `imperative suggestion`: Prozedur ohne Rückgabewert.
-- `anchor` & `deepenTrance`: Zustand sichern bzw. Trance-Level erhöhen.
+- `anchor`: Zustand sichern (Snapshot einer Variablen).
 - `oscillate`, `pendulum`: Toggler und bidirektionale Schleifen.
 - `suspend`: Pausiert ohne festes Ende, bis ein Trigger aufweckt.
 - `freeze`: Macht Variablen unveränderlich.
