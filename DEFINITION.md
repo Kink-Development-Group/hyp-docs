@@ -1,5 +1,7 @@
 # **HypnoScript** – Eine esoterische, TypeScript-inspirierte Sprache mit hypnotischem Flair
 
+> _"You are feeling very sleepy... Your code is getting deeper... and deeper..."_
+
 ---
 
 ## **Inhaltsverzeichnis**
@@ -7,12 +9,15 @@
 - [**HypnoScript** – Eine esoterische, TypeScript-inspirierte Sprache mit hypnotischem Flair](#hypnoscript--eine-esoterische-typescript-inspirierte-sprache-mit-hypnotischem-flair)
   - [**Inhaltsverzeichnis**](#inhaltsverzeichnis)
   - [**1. Einleitung**](#1-einleitung)
+    - [1.1 Philosophie](#11-philosophie)
+    - [1.2 Design-Prinzipien](#12-design-prinzipien)
   - [**2. Grundaufbau**](#2-grundaufbau)
     - [2.1 Lexikalische Struktur](#21-lexikalische-struktur)
     - [2.2 Schlüsselwörter](#22-schlüsselwörter)
     - [2.3 Operatoren und Sonderzeichen](#23-operatoren-und-sonderzeichen)
     - [2.4 Bezeichner (Identifier)](#24-bezeichner-identifier)
     - [2.5 Literale](#25-literale)
+    - [2.6 Typ-System und Annotationen](#26-typ-system-und-annotationen)
   - [**3. Syntax**](#3-syntax)
     - [3.1 Programmstruktur](#31-programmstruktur)
     - [3.2 Deklarationen](#32-deklarationen)
@@ -26,13 +31,20 @@
       - [3.5.1 Objektorientierung: `session`](#351-objektorientierung-session)
       - [3.5.2 Warte-Mechanismus: `drift(ms)`](#352-warte-mechanismus-driftms)
       - [3.5.3 Hypnotische Operator-Synonyme](#353-hypnotische-operator-synonyme)
+        - [Tafel der klassischen Suggestionen](#tafel-der-klassischen-suggestionen)
+        - [Moderne Traum-Semantik](#moderne-traum-semantik)
       - [3.5.4 Benutzerdefinierte Strukturen/Typen: `tranceify`](#354-benutzerdefinierte-strukturentypen-tranceify)
-      - [3.5.5 Weitere Gimmicks (optional)](#355-weitere-gimmicks-optional)
+      - [3.5.5 Muster-Entraining: `entrain`](#355-muster-entraining-entrain)
+      - [3.5.6 Asynchrone Trance: `mesmerize` \& `await`](#356-asynchrone-trance-mesmerize--await)
+      - [3.5.7 Module \& gemeinsame Trancen](#357-module--gemeinsame-trancen)
+      - [3.5.8 Hypnotische Werkzeuge (Best-of)](#358-hypnotische-werkzeuge-best-of)
   - [**4. Grammatik (EBNF)**](#4-grammatik-ebnf)
   - [**5. Semantik**](#5-semantik)
     - [5.1 Variablen und Scope](#51-variablen-und-scope)
     - [5.2 Ein- / Ausgabe](#52-ein---ausgabe)
     - [5.3 Turing-Vollständigkeit](#53-turing-vollständigkeit)
+    - [5.4 Fehlerbehandlung: Albtraum-Management](#54-fehlerbehandlung-albtraum-management)
+    - [5.5 Parallelität und Trance-Synchronisation](#55-parallelität-und-trance-synchronisation)
   - [**6. Standardbibliothek**](#6-standardbibliothek)
     - [6.1 Tranceify-Bibliothek (Kernfunktionen)](#61-tranceify-bibliothek-kernfunktionen)
     - [6.2 Hypno-Math (Mathematische Funktionen)](#62-hypno-math-mathematische-funktionen)
@@ -41,8 +53,14 @@
     - [6.5 TimeWarp (Zeit- und Datumsfunktionen)](#65-timewarp-zeit--und-datumsfunktionen)
     - [6.6 DeepMind (Erweiterte Kontrollstrukturen)](#66-deepmind-erweiterte-kontrollstrukturen)
     - [6.7 SensoryInput (Ein-/Ausgabe-Funktionen)](#67-sensoryinput-ein-ausgabe-funktionen)
+    - [6.8 AuraAsync (Asynchronität \& Tasks)](#68-auraasync-asynchronität--tasks)
+    - [6.9 DreamWeaver Patterns (Pattern Matching)](#69-dreamweaver-patterns-pattern-matching)
+    - [6.10 Stagecraft Visions (UI \& Präsentation)](#610-stagecraft-visions-ui--präsentation)
+    - [6.11 HypnoNet (Netzwerk \& APIs)](#611-hypnonet-netzwerk--apis)
+    - [6.12 RealityAnchor (Persistenz \& Storage)](#612-realityanchor-persistenz--storage)
+    - [6.13 LucidDiagnostics (Debugging \& Telemetrie)](#613-luciddiagnostics-debugging--telemetrie)
   - [**7. Beispielprogramme**](#7-beispielprogramme)
-    - [7.1 Einfaches „Hello Trance!"](#71-einfaches-hello-trance)
+    - [7.1 Einfaches „Hello Trance!“](#71-einfaches-hello-trance)
     - [7.2 Summierung mit Input](#72-summierung-mit-input)
     - [7.3 Verwendung erweiterter Konzepte](#73-verwendung-erweiterter-konzepte)
       - [7.3.1 `session`, `drift`, Operator-Synonyme](#731-session-drift-operator-synonyme)
@@ -51,8 +69,36 @@
 
 ## **1. Einleitung**
 
-**HypnoScript** ist eine minimalistische, esoterische Sprache, die sich an die Syntax von TypeScript/JavaScript anlehnt und dabei alle möglichen Klischees rund um Hypnose, Trance und hypnotische Induktion verwendet.  
-Trotz des humorvollen Charakters ist sie auf Turing-Vollständigkeit ausgelegt und unterstützt Variablen, Schleifen, bedingte Anweisungen, Funktionen, Objektorientierung (als _Session-Konzept_) und diverse Sprach-Gimmicks im hypnotischen Stil.
+**HypnoScript** ist eine moderne, esoterische Programmiersprache, die sich an die Syntax von TypeScript/JavaScript anlehnt und dabei konsequent Klischees und Metaphern aus der Welt der Hypnose verwendet. Die Sprache vereint humorvolle Themenwahl mit ernsthafter Funktionalität und bietet ein vollständiges, Turing-vollständiges Sprachsystem.
+
+### 1.1 Philosophie
+
+HypnoScript folgt dem Paradigma der **"Hypnotischen Programmierung"**, bei der:
+
+- **Code als Suggestion** betrachtet wird – Programme sind Sequenzen von Suggestionen an den Computer
+- **Variablen in Trance versetzt** werden – Werte werden induziert, implantiert oder eingebettet
+- **Kontrollfluss als Trance-Tiefe** metaphorisiert wird – tiefere Verschachtelung = tiefere Trance
+- **Funktionen als hypnotische Suggestions** wirken – sie beeinflussen den Zustand des Programms
+- **Fehler als "Erwachen aus der Trance"** behandelt werden – unerwartete Zustände durchbrechen den Flow
+
+### 1.2 Design-Prinzipien
+
+1. **Konsistenz**: Alle Sprachelemente folgen der hypnotischen Metapher
+2. **Lesbarkeit**: Trotz esoterischer Begriffe bleibt die Struktur vertraut
+3. **Modernität**: Unterstützung für Pattern Matching, Async/Await, Type Safety
+4. **Vollständigkeit**: Umfangreiche Standardbibliothek für praktische Anwendungen
+5. **Spaß**: Die Sprache soll zum Experimentieren einladen und unterhalten
+
+**Kerneigenschaften:**
+
+- Turing-vollständig
+- Statisches Typsystem mit Typ-Inferenz
+- Objektorientierung mit Session-Konzept
+- Funktionale Programmierung (First-Class Functions, Closures, Lambda)
+- Pattern Matching
+- Async/Await für asynchrone Operationen
+- Umfassende Standardbibliothek
+- Module-System für Code-Organisation
 
 ---
 
@@ -60,65 +106,96 @@ Trotz des humorvollen Charakters ist sie auf Turing-Vollständigkeit ausgelegt u
 
 ### 2.1 Lexikalische Struktur
 
-- **Groß- und Kleinschreibung**: In dieser Definition gehen wir davon aus, dass Schlüsselwörter case-sensitive sind und stets in **Kleinschreibung** geschrieben werden.  
-- **Kommentare**:  
-  - Einzeilig: `// Kommentar`  
+- **Groß- und Kleinschreibung**: In dieser Definition gehen wir davon aus, dass Schlüsselwörter case-sensitive sind und stets in **Kleinschreibung** geschrieben werden.
+- **Kommentare**:
+  - Einzeilig: `// Kommentar`
   - Mehrzeilig: `/* ... */`
 
 ### 2.2 Schlüsselwörter
 
 ```plaintext
 Focus, Relax,
-if, else,
-while, loop,
-snap, sink,
-suggestion, awaken, call,
 entrance, finale,
-deepFocus, deeperStill,
-induce, implant, embed,
-observe, whisper, command,
-trance, subconscious,
-from, external,
-number, string, boolean,
-true, false,
+if, else, when, otherwise,
+while, loop, pendulum,
+snap, sink, sinkTo,
+suggestion, mesmerize, awaken, await, surrenderTo, call,
+entrain,
+induce, implant, embed, freeze, sharedTrance,
+observe, whisper, command, murmur,
+mindLink, from, external,
 session, constructor,
 expose, conceal, dominant,
-drift, suspend, freeze,
+tranceify, anchor, trigger, oscillate,
+drift, suspend, pauseReality, accelerateTime, decelerateTime,
+deepFocus, deeperStill,
+trance, subconscious, lucid,
+number, string, boolean,
+true, false,
 youAreFeelingVerySleepy, lookAtTheWatch, fallUnderMySpell,
 youCannotResist, yourEyesAreGettingHeavy, goingDeeper,
-tranceify,
-mindLink, sharedTrance,
-imperative, trigger, anchor,
-oscillate, pendulum,
-deepenTrance, emergeFromTrance,
-underMyControl, resistanceIsFutile
+underMyControl, resistanceIsFutile, lucidFallback, dreamReach
 ```
 
-_(Die zusätzlichen hypnotischen Begriffe siehe Kapitel „Erweiterte Konzepte“.)_
+> Hinweis: Zusätzliche hypnotische Begriffe findest du in Kapitel „Erweiterte Konzepte“.
 
 ### 2.3 Operatoren und Sonderzeichen
 
-- **Zuweisung**: `=`  
-- **Arithmetisch**: `+`, `-`, `*`, `/`, `%`  
-- **Vergleich**: `==`, `!=`, `>`, `>=`, `<`, `<=` (ergänzt durch hypnotische Synonyme, siehe [3.5.3](#hypnotische-operator-synonyme))  
-- **Logisch**: `&&`, `||`, `!`  
+- **Zuweisung**: `=`
+- **Arithmetisch**: `+`, `-`, `*`, `/`, `%`
+- **Vergleich**: `==`, `!=`, `>`, `>=`, `<`, `<=` (ergänzt durch hypnotische Synonyme, siehe [3.5.3](#353-hypnotische-operator-synonyme))
+- **Logisch**: `&&`, `||`, `!`
+- **Nullish/Optional**: `??`, `?.` (alias `lucidFallback`, `dreamReach`)
 - **Trennzeichen/Klammern**: `;`, `,`, `(`, `)`, `{`, `}`, `[` , `]`
 
 ### 2.4 Bezeichner (Identifier)
 
-- **Syntax**:  
-  - Beginnend mit einem Buchstaben `a-z`/`A-Z` oder `_`  
-  - Gefolgt von beliebigen Buchstaben, Ziffern `0-9` oder `_`  
+- **Syntax**:
+  - Beginnend mit einem Buchstaben `a-z`/`A-Z` oder `_`
+  - Gefolgt von beliebigen Buchstaben, Ziffern `0-9` oder `_`
 
-Beispiele: `counter`, `myVar2`, `_hiddenField`.  
+Beispiele: `counter`, `myVar2`, `_hiddenField`.
 Schlüsselwörter dürfen nicht als Bezeichner verwendet werden.
 
 ### 2.5 Literale
 
-- **Numerisch**: `42`, `3.14`  
-- **String**: `"Hello Trance!"` (Escapes optional, z. B. `\"`)  
-- **Boolean**: `true`, `false`  
-- _(Optionaler Fantasietyp `trance` hat keine separaten Literale, kann aber als Typannotation dienen.)_
+- **Numerisch**: `42`, `3.14`
+- **String**: `"Hello Trance!"` (Escapes optional, z. B. `\"`)
+- **Boolean**: `true`, `false`
+
+> Hinweis: Der Fantasietyp `trance` besitzt keine Literale, eignet sich aber als Typannotation.
+
+### 2.6 Typ-System und Annotationen
+
+HypnoScript residiert in einer statisch getypten, aber äußerst suggestiven Traumwelt. Jede Variable kann – muss aber nicht – einen sichtbaren Typ tragen. Fehlt die Annotation, induziert der Interpreter den Typ via Trance-Intuition.
+
+- **Basistypen**: `number`, `string`, `boolean`, `trance` (für bewusstseinserweiterte Payloads).
+- **Modifier**: `lucid` markiert Werte als optional/entrückt (`lucid string` ≙ `string | null | undefined`).
+- **Kombinationen**: Union (`typeA | typeB`) und Intersection (`typeA & typeB`) werden unterstützt – passend zu verschmelzenden Trancezuständen.
+- **Generics**: Funktionen, Sessions und `tranceify`-Typen können Typparameter verwenden (`suggestion anchor<T>(value: T): T`).
+- **Optionale Felder**: Das Suffix `?` auf einem Feld/einer Signatur kennzeichnet „sanft mögliche“ Werte.
+- **Nullish-Handling**: Der Operator `lucidFallback` (Alias für `??`) und `dreamReach` (Alias für `?.`) helfen, schlafwandelnde Werte sicher zu berühren.
+
+```plaintext
+induce guestCount: number = 42;
+induce mantra: lucid string;           // optionaler Wert
+induce guestRegistry = { entries: [] };
+
+tranceify HypnoGuest<TMemory> {
+    name: string;
+    memory: TMemory;
+    isInTrance: boolean;
+    suggestionLevel?: number;
+}
+
+suggestion summonEcho<T>(value: T | trance, fallback: T): T {
+    awaken value lucidFallback fallback;
+}
+
+observe guestRegistry dreamReach entries lucidFallback [];
+```
+
+> Hinweis: `lucidFallback` (`??`) und `dreamReach` (`?.`) sind syntaktischer Zucker für Nullish-Coalescing und Optional-Chaining – passend ins hypnotische Bühnenbild übersetzt.
 
 ---
 
@@ -136,10 +213,10 @@ Focus {
 } Relax
 ```
 
-Optionale Besonderheit:  
+Optionale Besonderheit:
 
-- **`entrance { ... }`** kann als „Startblock“ dienen.  
-  - Wenn vorhanden, wird der Code im `entrance`-Block zuerst ausgeführt.  
+- **`entrance { ... }`** kann als „Startblock“ dienen.
+  - Wenn vorhanden, wird der Code im `entrance`-Block zuerst ausgeführt.
   - Ist kein `entrance`-Block definiert, wird das Programm z. B. von oben nach unten abgearbeitet oder folgt anderen Implementierungsdetails.
 
 ### 3.2 Deklarationen
@@ -151,7 +228,7 @@ induce x: number = 5;
 induce y: string = "Hallo";
 ```
 
-- Mit oder ohne Initialisierung.  
+- Mit oder ohne Initialisierung.
 - **Input**: `induce name: string from external;` – kann (fiktiv) einen Wert von außen einlesen.
 
 #### 3.2.2 Funktionen – `suggestion`
@@ -162,7 +239,7 @@ suggestion add(a: number, b: number): number {
 }
 ```
 
-- **Aufruf**:  
+- **Aufruf**:
 
   ```plaintext
   add(2, 3);
@@ -170,9 +247,10 @@ suggestion add(a: number, b: number): number {
   call add(2, 3);
   ```
 
-- **Rückgabe**: `awaken <Ausdruck>;` (analog zu `return`).  
+- **Rückgabe**: `awaken <Ausdruck>;` (analog zu `return`).
+- **Modifiers**: `mesmerize suggestion` erzeugt asynchrone Funktionen, `imperative suggestion` kennzeichnet Prozeduren, `dominant suggestion` statische/bibliothekarische Hooks.
 
-_(Für Funktionen ohne Rückgabewert kann man wahlweise `imperative suggestion` verwenden, siehe [3.5](#erweiterte-konzepte).)_
+> Hinweis: Für Funktionen ohne Rückgabewert kann man wahlweise `imperative suggestion` verwenden (siehe [3.5](#35-erweiterte-konzepte)).
 
 ### 3.3 Kontrollstrukturen
 
@@ -186,7 +264,7 @@ if (x > 0) {
 }
 ```
 
-- **`deepFocus`** als optionaler Ersatz für `{ }`-Blöcke:  
+- **`deepFocus`** als optionaler Ersatz für `{ }`-Blöcke:
 
   ```plaintext
   if (counter > 5) deepFocus {
@@ -215,12 +293,12 @@ loop (induce i: number = 0; i < 5; i = i + 1) {
 }
 ```
 
-- **`snap;`**: bricht Schleife ab (analog `break`).  
+- **`snap;`**: bricht Schleife ab (analog `break`).
 - **`sink;`**: springt zum nächsten Durchlauf (analog `continue`).
 
 ### 3.4 Blöcke
 
-- Geschweifte Klammern `{ ... }` oder optional `deepFocus { ... }` als Block.  
+- Geschweifte Klammern `{ ... }` oder optional `deepFocus { ... }` als Block.
 - Mehrere Anweisungen können in einem Block stehen.
 
 ### 3.5 **Erweiterte Konzepte**
@@ -252,10 +330,10 @@ session Person {
   p.greet();
   ```
 
-- `expose`: Feld/Methoden sind öffentlich (zugreifbar von außen).  
-- `conceal`: Feld/Methoden sind privat (nur innerhalb der Session).  
-- **`constructor`**: Spezialmethode, die bei Instanzierung aufgerufen wird.  
-- **`dominant suggestion`**: (optional) für statische Methoden (z. B. `MathWizard.power(a,b)`).  
+- `expose`: Feld/Methoden sind öffentlich (zugreifbar von außen).
+- `conceal`: Feld/Methoden sind privat (nur innerhalb der Session).
+- **`constructor`**: Spezialmethode, die bei Instanzierung aufgerufen wird.
+- **`dominant suggestion`**: (optional) für statische Methoden (z. B. `MathWizard.power(a,b)`).
 
 #### 3.5.2 Warte-Mechanismus: `drift(ms)`
 
@@ -267,53 +345,54 @@ drift(3000);
 observe "...Nach 3 Sekunden geht's weiter.";
 ```
 
-_(Implementierung abhängig von Interpreter/Runtime.)_
+> Hinweis: Die konkrete Warte-Strategie hängt von Interpreter oder Runtime ab.
 
 #### 3.5.3 Hypnotische Operator-Synonyme
 
-Neben den üblichen `==`, `>`, `<` usw. können folgende Synonyme verwendet werden:
+Wo andere Sprachen nüchtern vergleichen, flüstert HypnoScript beschwörende Formeln. Jede Vergleichs- und Logikoperation besitzt ein theatrales Alias, das exakt dieselbe Semantik behält – nur viel mehr Show liefert.
 
-- **`youAreFeelingVerySleepy`** statt `==`  
+##### Tafel der klassischen Suggestionen
 
-  ```plaintext
-  if (x youAreFeelingVerySleepy y) { ... }
-  ```
+| Standard-Operator           | Hypnotisches Synonym      | Bedeutung           |
+| --------------------------- | ------------------------- | ------------------- |
+| `==`                        | `youAreFeelingVerySleepy` | Gleichheit          |
+| `!=`                        | `youCannotResist`         | Ungleichheit        |
+| `>`                         | `lookAtTheWatch`          | Größer als          |
+| `<`                         | `fallUnderMySpell`        | Kleiner als         |
+| `>=`                        | `yourEyesAreGettingHeavy` | Größer oder gleich  |
+| `<=`                        | `goingDeeper`             | Kleiner oder gleich |
+| `&&`                        | `underMyControl`          | Logisches UND       |
+| `<code>&#124;&#124;</code>` | `resistanceIsFutile`      | Logisches ODER      |
 
-- **`lookAtTheWatch`** statt `>`  
-- **`fallUnderMySpell`** statt `<`  
-- **`youCannotResist`** statt `!=`
-- **`yourEyesAreGettingHeavy`** statt `>=`
-- **`goingDeeper`** statt `<=`
-- **`underMyControl`** statt `&&` (logisches UND)
-- **`resistanceIsFutile`** statt `||` (logisches ODER)
+##### Moderne Traum-Semantik
 
-**Vollständige Liste der hypnotischen Operator-Synonyme:**
+| Konstruktion | Hypnotisches Synonym | Wirkung                        |
+| ------------ | -------------------- | ------------------------------ |
+| `??`         | `lucidFallback`      | Nullish-Coalescing             |
+| `?.`         | `dreamReach`         | Optional-Chaining auf Objekten |
+| `?.[`        | `dreamReach[`        | Optionaler Indexzugriff        |
+| `?.(`        | `dreamReach(`        | Optionaler Funktionsaufruf     |
 
-| Standard-Operator | Hypnotisches Synonym | Bedeutung |
-|-------------------|---------------------|-----------|
-| `==` | `youAreFeelingVerySleepy` | Gleichheit |
-| `!=` | `youCannotResist` | Ungleichheit |
-| `>` | `lookAtTheWatch` | Größer als |
-| `<` | `fallUnderMySpell` | Kleiner als |
-| `>=` | `yourEyesAreGettingHeavy` | Größer oder gleich |
-| `<=` | `goingDeeper` | Kleiner oder gleich |
-| `&&` | `underMyControl` | Logisches UND |
-| `||` | `resistanceIsFutile` | Logisches ODER |
-
-**Beispiele:**
+Die Synonyme können frei mit den Standardoperatoren gemischt werden. Für konsistente Hypnose empfiehlt es sich, pro Datei einen Stil zu wählen.
 
 ```plaintext
-// Vergleiche mit hypnotischen Synonymen
-if (age lookAtTheWatch 18 underMyControl licensed youAreFeelingVerySleepy true) {
+induce age: number = 22;
+induce license: boolean = true;
+if (age lookAtTheWatch 18 underMyControl license youAreFeelingVerySleepy true) {
     observe "Du darfst fahren!";
 }
 
-// Komplexe Bedingung
+induce guest = { profile: { alias: "Hypna" } };
+induce dossier = guest dreamReach profile lucidFallback {};
+observe dossier;
+
+induce x: number = 7;
+induce y: number = 42;
 if (x goingDeeper 100 resistanceIsFutile y yourEyesAreGettingHeavy 50) {
-    observe "Bedingung erfüllt!";
+    command "Bedingung erfüllt – trance tiefer!";
 }
 
-// Ungleichheit prüfen
+induce password: string = "secret";
 if (password youCannotResist "trance123") {
     observe "Falsches Passwort!";
 }
@@ -338,88 +417,128 @@ induce r = HypnoRecord {
 observe r.name;
 ```
 
-- Weist Felder per `{ feldname: wert, ... }` zu.  
+- Weist Felder per `{ feldname: wert, ... }` zu.
 - Intern kann dies wie eine _struct_ oder ein _Record_ behandelt werden.
 
-#### 3.5.5 Weitere Gimmicks (optional)
+#### 3.5.5 Muster-Entraining: `entrain`
 
-- **`imperative suggestion`**: Eine Funktion ohne Rückgabewert (Prozedur).  
-- **`mindLink "myLibrary.hyp";`**: Zum Import weiterer Module/Dateien.  
-- **`sharedTrance`**: Globale Variablen-Definition.  
-- **`trigger`**: Definiert einen Event-Handler oder Callback.
-- **`anchor`**: Markiert einen Zustand oder Wert zur späteren Wiederherstellung.
-- **`oscillate`**: Wechselt zwischen zwei Zuständen (Toggle-Funktion).
-- **`pendulum`**: Führt eine oszillierende Schleife aus (hin und zurück).
-- **`suspend`**: Pausiert die Ausführung (ähnlich wie `drift`, aber unbestimmte Zeit).
-- **`freeze`**: Macht eine Variable unveränderlich (const).
-- **`whisper`**: Ausgabe ohne Zeilenumbruch.
-- **`command`**: Imperativ-Form von `observe` für direktive Ausgaben.
-- **`implant`**: Alternative zu `induce` für tiefer eingebettete Variablen.
-- **`embed`**: Fügt einen Wert in den Subconscious-Speicher ein.
-- **`subconscious`**: Zugriff auf versteckte/globale Speicherbereiche. *(Reserviert für zukünftige Implementierung)*
-- **`deepenTrance`**: Erhöht die Trance-Tiefe (könnte Debugging-Level beeinflussen). *(Reserviert für zukünftige Implementierung)*
-- **`emergeFromTrance`**: Verringert die Trance-Tiefe oder beendet bestimmte Modi. *(Reserviert für zukünftige Implementierung)*
-- **`trigger`**: Definiert einen Event-Handler oder Callback. *(Reserviert für zukünftige Implementierung)*
-- **`finale`**: Optionaler Abschlussblock (wird nach `Relax` oder am Programmende ausgeführt).
+`entrain` ist HypnoScripts Pattern-Matching und wirkt wie ein sanftes Einschwingen auf unterschiedliche Bewusstseinslagen. Der Ausdruck wird einmal evaluiert, anschließend werden die `when`-Klauseln der Reihe nach geprüft. Die erste passende Suggestion gewinnt; `otherwise` dient als Fallback.
 
-**Beispiele:**
+- Literale (`when 0`, `when "Spirale"`).
+- Typ-Patterns mit optionaler Bindung (`when value: number`).
+- Destrukturierung von `tranceify`-Records und Arrays (`when HypnoGuest { name, isInTrance: true }`).
+- Guards mit `if` für zusätzliche Bedingungen.
+- Spread-Operator `...rest` innerhalb von Array-Pattern.
 
 ```plaintext
-// Anchor-Verwendung
-induce x: number = 42;
-anchor savedX = x;
-x = 100;
-x = savedX;  // Wiederherstellung
+induce input: any = HypnoGuest<{ tranceDepth: number }> {
+    name: "Luna",
+    memory: { tranceDepth: 7 },
+    isInTrance: true,
+    suggestionLevel: 5,
+};
 
-// Oscillate (Toggle)
-induce isActive: boolean = false;
-oscillate isActive;  // isActive wird zu true
-oscillate isActive;  // isActive wird wieder zu false
+entrain input {
+    when 0 => command "Nullpunkt erreicht.";
+    when value: number if value lookAtTheWatch 0 => command "Positive Schwingung!";
+    when HypnoGuest { name, isInTrance: true } => observe name + " ist tief in Trance.";
+    when [first, ...rest] => observe "Liste startet mit " + first;
+    otherwise => observe "Unbekannter Bewusstseinszustand";
+}
+```
 
-// Pendulum-Schleife (hin und zurück von 0 bis 10)
-pendulum (induce i: number = 0; i fallUnderMySpell 10) {
-    observe i;
+Jede `when`-Klausel kann `awaken` verwenden, um einen Wert zurückzugeben. `entrain` selbst ist also ein Ausdruck und lässt sich direkt einer Variable zuweisen.
+
+#### 3.5.6 Asynchrone Trance: `mesmerize` & `await`
+
+Für Operationen, die im Hintergrund schweben, markiert `mesmerize` eine Funktion als hypnotisch-asynchron. Der Rückgabewert entspricht einem Promise; `await` (alias `surrenderTo`) löst die Suggestion auf.
+
+```plaintext
+mesmerize suggestion lullaby(): number {
+    drift(1200);
+    awaken 42;
 }
 
-// Freeze-Konstante
-freeze PI: number = 3.14159;
-// PI = 3.0; // Fehler: Variable ist eingefroren
-
-// Whisper (ohne Zeilenumbruch)
-whisper "Bitte warten";
-drift(1000);
-whisper "...";
-drift(1000);
-observe "Fertig!";
-
-// Finale-Block
 Focus {
-    observe "Programmstart";
-    
-    entrance {
-        observe "Initialisierung...";
+    induce answer: number = await lullaby();
+    observe "Antwort aus dem Traum: " + answer;
+
+    induce secondAnswer: number = surrenderTo lullaby();
+    observe "Alias funktioniert ebenso.";
+} Relax
+```
+
+`mesmerize` kann mit `session` kombiniert werden, um hypnotische Services zu definieren. Innerhalb von `mesmerize`-Funktionen stehen `parallelTrance` und `scheduleAwakening` aus der Standardbibliothek zur Verfügung.
+
+#### 3.5.7 Module & gemeinsame Trancen
+
+Das Modul-System bildet die Bühne, auf der mehrere Skripte gemeinsam schwingen.
+
+```plaintext
+mindLink "./rituals/spiral.hyp";
+mindLink { chant as deepChant } from "./choir.hyp";
+
+sharedTrance freeze stageLighting: string = "violett";
+sharedTrance induce visitorCount: number = 0;
+
+imperative suggestion incrementVisitors() {
+    visitorCount = visitorCount + 1;
+    deepChant();
+}
+```
+
+- `mindLink` lädt Module; benannte Importe funktionieren wie in modernen JS-Ökosystemen.
+- `sharedTrance` deklariert modulweite Zustände (ggf. mit `freeze`).
+- `manifest` (optional) kann verwendet werden, um Assets zu exportieren (Implementierungsdetail des Toolings).
+
+#### 3.5.8 Hypnotische Werkzeuge (Best-of)
+
+Eine Auswahl weiterer Sprachjuwelen, die den Hypnose-Charakter abrunden:
+
+- `imperative suggestion`: Prozedur ohne Rückgabewert.
+- `anchor` & `deepenTrance`: Zustand sichern bzw. Trance-Level erhöhen.
+- `oscillate`, `pendulum`: Toggler und bidirektionale Schleifen.
+- `suspend`: Pausiert ohne festes Ende, bis ein Trigger aufweckt.
+- `freeze`: Macht Variablen unveränderlich.
+- `whisper`, `command`, `murmur`: Ausgabestufen vom Flüstern bis zur Autorität.
+- `implant`/`embed`: Alternativen zu `induce` für tiefere Speicheroperationen.
+- `subconscious`: Zugriff auf verborgene Speicherbereiche.
+- `trigger`: Event-Hooks (z. B. für `repeatAction`).
+- `sinkTo label;`: Goto-artiger Sprung für dramatische Effekte – möglichst sparsam einsetzen.
+- `finale { ... }`: Aufräum- und Abschlussblock nach dem Hauptprogramm.
+
+```plaintext
+sharedTrance freeze mantraText: string = "Atme ein, atme aus";
+
+Focus {
+    anchor baselineDepth = 3;
+    induce isDeepening: boolean = false;
+
+    oscillate isDeepening;
+    if (isDeepening) {
+        deepenTrance(baselineDepth);
     }
-    
-    // Hauptprogramm
-    induce result: number = 42;
-    observe "Ergebnis: " + result;
-    
+
+    pendulum (induce i: number = 0; i fallUnderMySpell 3) {
+        whisper mantraText + " (" + i + ")";
+        drift(300);
+    }
+
+    trigger onAwaken = suggestion() {
+        command "Du bist wieder ganz da.";
+    };
+
+    // Nostalgischer Sprung, bitte nur im Ausnahmefall:
+    myLabel:
+    if (baselineDepth fallUnderMySpell 1) sinkTo myLabel;
+
     finale {
-        observe "Aufräumen und Beenden...";
-        observe "Programm erfolgreich beendet.";
+        onAwaken();
     }
 } Relax
 ```
 
-- **Sprünge** (Goto-ähnlich):  
-
-  ```plaintext
-  myLabel:
-  observe "Label erreicht!";
-  if (x < 10) sinkTo myLabel; 
-  ```
-
-  _(Extremes Feature – kann, muss aber nicht verwendet werden.)_
+> Hinweis: Viele dieser Features sind Zuckerguss. Für produktive Hypnose gilt – dosiert einsetzen, damit niemand aus der Trance fällt.
 
 ---
 
@@ -428,172 +547,198 @@ Focus {
 Nachfolgend eine beispielhafte EBNF-Skizze, die die Kernsyntax (ohne alle Operator-Synonyme) abbildet. Die Synonyme (`youAreFeelingVerySleepy`, etc.) könnten in der Praxis direkt auf die Standardoperatoren gemappt werden.
 
 ```ebnf
-Program         ::= "Focus" Block [ FinaleBlock ] "Relax" ;
+Program          ::= "Focus" Block [ FinaleBlock ] "Relax" ;
 
-Block           ::= { Statement } ;
+Block            ::= { Statement } ;
 
-Statement       ::= VarDeclarationStatement
-                  | FreezeStatement
-                  | ExpressionStatement
-                  | IfStatement
-                  | WhileStatement
-                  | LoopStatement
-                  | PendulumStatement
-                  | BreakStatement
-                  | ContinueStatement
-                  | FunctionDeclaration
-                  | ReturnStatement
-                  | ObserveStatement
-                  | WhisperStatement
-                  | CommandStatement
-                  | EntranceBlock
-                  | SessionDeclaration
-                  | TranceifyDeclaration
-                  | BlockStatement
-                  | AnchorStatement
-                  | OscillateStatement
-                  | DriftStatement
-                  ;
+Statement        ::= VarDeclarationStatement
+                   | SharedTranceDeclaration
+                   | FreezeStatement
+                   | MindLinkStatement
+                   | EntrainStatement
+                   | IfStatement
+                   | WhileStatement
+                   | LoopStatement
+                   | PendulumStatement
+                   | BreakStatement
+                   | ContinueStatement
+                   | FunctionDeclaration
+                   | TriggerDeclaration
+                   | ReturnStatement
+                   | ObserveStatement
+                   | WhisperStatement
+                   | CommandStatement
+                   | DriftStatement
+                   | AnchorStatement
+                   | OscillateStatement
+                   | SessionDeclaration
+                   | TranceifyDeclaration
+                   | EntranceBlock
+                   | FinaleBlock
+                   | LabelStatement
+                   | SinkToStatement
+                   | BlockStatement
+                   | ExpressionStatement ;
 
-BlockStatement  ::= ("deepFocus" | "deeperStill" |) "{" { Statement } "}" 
-                  ;
+BlockStatement   ::= [ "deepFocus" | "deeperStill" ] "{" { Statement } "}" ;
 
-EntranceBlock   ::= "entrance" BlockStatement ;
-FinaleBlock     ::= "finale" BlockStatement ;
+EntranceBlock    ::= "entrance" BlockStatement ;
+FinaleBlock      ::= "finale" BlockStatement ;
 
 VarDeclarationStatement
-                  ::= ("induce" | "implant" | "embed") Identifier [ ":" Type ] [ "=" Expression ] ";"
-                  | ("induce" | "implant") Identifier [ ":" Type ] "from" "external" ";" ;
+                   ::= ("induce" | "implant" | "embed") Identifier [ ":" Type ] [ "=" Expression ] ";"
+                   | ("induce" | "implant") Identifier [ ":" Type ] "from" "external" ";" ;
 
-FreezeStatement ::= "freeze" Identifier ":" Type "=" Expression ";" ;
+SharedTranceDeclaration
+                   ::= "sharedTrance" ("freeze" | "induce" | "implant" | "embed")
+                       Identifier [ ":" Type ] [ "=" Expression ] ";" ;
 
-ObserveStatement
-                  ::= "observe" Expression ";" ;
+FreezeStatement  ::= "freeze" Identifier ":" Type "=" Expression ";" ;
 
-WhisperStatement
-                  ::= "whisper" Expression ";" ;
+MindLinkStatement
+                   ::= "mindLink" StringLiteral [ "as" Identifier ] ";"
+                   | "mindLink" "{" ImportList "}" "from" StringLiteral ";" ;
 
-CommandStatement
-                  ::= "command" Expression ";" ;
+ImportList       ::= ImportSpecifier { "," ImportSpecifier } ;
+ImportSpecifier  ::= Identifier [ "as" Identifier ] ;
 
-DriftStatement  ::= ("drift" | "suspend" | "pauseReality") "(" Expression ")" ";" ;
+ObserveStatement ::= "observe" Expression ";" ;
+WhisperStatement ::= "whisper" Expression ";" ;
+CommandStatement ::= "command" Expression ";" ;
 
-AnchorStatement ::= "anchor" Identifier "=" Expression ";" ;
+DriftStatement   ::= ("drift" | "suspend" | "pauseReality") "(" Expression ")" ";" ;
 
-OscillateStatement
-                  ::= "oscillate" Identifier ";" ;
+AnchorStatement  ::= "anchor" Identifier "=" Expression ";" ;
+OscillateStatement ::= "oscillate" Identifier ";" ;
+
+LabelStatement   ::= Identifier ":" ;
+SinkToStatement  ::= "sinkTo" Identifier ";" ;
 
 PendulumStatement
-                  ::= "pendulum" "(" [ VarDeclarationStatementNoSemicolon ] 
-                                   ";" Expression ";" Expression ")"
-                      BlockStatement ;
+                   ::= "pendulum" "(" [ VarDeclarationStatementNoSemicolon ]
+                                    ";" Expression ";" Expression ")"
+                       BlockStatement ;
 
-IfStatement     ::= "if" "(" Expression ")" BlockStatement
-                    [ "else" BlockStatement ] ;
+IfStatement      ::= "if" "(" Expression ")" BlockStatement [ "else" BlockStatement ] ;
+WhileStatement   ::= "while" "(" Expression ")" BlockStatement ;
+LoopStatement    ::= "loop" "(" [ VarDeclarationStatementNoSemicolon ]
+                                ";" Expression ";" Expression ")" BlockStatement ;
 
-WhileStatement  ::= "while" "(" Expression ")" BlockStatement ;
-
-LoopStatement   ::= "loop" "(" [ VarDeclarationStatementNoSemicolon ] 
-                             ";" Expression ";" Expression ")"
-                    BlockStatement ;
-
-BreakStatement  ::= "snap" ";" ;
-ContinueStatement
-                  ::= "sink" ";" ;
+BreakStatement   ::= "snap" ";" ;
+ContinueStatement::= "sink" ";" ;
 
 FunctionDeclaration
-                  ::= ( "suggestion" | "imperative suggestion" | "dominant suggestion" )
-                      Identifier "(" [ ParameterList ] ")" [ ":" Type ]
-                      BlockStatement ;
+                   ::= FunctionModifier Identifier "(" [ ParameterList ] ")" [ ":" Type ]
+                       BlockStatement ;
 
-ParameterList   ::= Parameter { "," Parameter } ;
-Parameter       ::= Identifier [ ":" Type ] ;
+FunctionModifier ::= [ "mesmerize" ] ( "suggestion"
+                                      | "imperative suggestion"
+                                      | "dominant suggestion" ) ;
 
-ReturnStatement ::= "awaken" [ Expression ] ";" ;
+TriggerDeclaration
+                   ::= "trigger" Identifier "=" FunctionExpression ";" ;
+
+FunctionExpression
+                   ::= [ "mesmerize" ] "suggestion" "(" [ ParameterList ] ")"
+                       BlockStatement ;
+
+ParameterList    ::= Parameter { "," Parameter } ;
+Parameter        ::= Identifier [ ":" Type ] ;
+
+ReturnStatement  ::= "awaken" [ Expression ] ";" ;
 
 ExpressionStatement
-                  ::= Expression ";" ;
+                   ::= Expression ";" ;
 
-Expression      ::= AssignmentExpression ;
+Expression       ::= AssignmentExpression ;
 
 AssignmentExpression
-                  ::= LogicalOrExpression [ "=" AssignmentExpression ] ;
+                   ::= LogicalOrExpression [ "=" AssignmentExpression ] ;
 
 LogicalOrExpression
-                  ::= LogicalAndExpression
-                      { ( "||" | "resistanceIsFutile" ) LogicalAndExpression } ;
+                   ::= LogicalAndExpression { ( "||" | "resistanceIsFutile" ) LogicalAndExpression } ;
 
 LogicalAndExpression
-                  ::= EqualityExpression
-                      { ( "&&" | "underMyControl" ) EqualityExpression } ;
+                   ::= EqualityExpression { ( "&&" | "underMyControl" ) EqualityExpression } ;
 
 EqualityExpression
-                  ::= RelationalExpression
-                      { ( "==" | "!=" 
-                          | "youAreFeelingVerySleepy" | "youCannotResist" ) 
-                          RelationalExpression } ;
+                   ::= RelationalExpression { EqualityOperator RelationalExpression } ;
+
+EqualityOperator ::= "==" | "!=" | "youAreFeelingVerySleepy" | "youCannotResist" ;
 
 RelationalExpression
-                  ::= AdditiveExpression
-                      { ( ">" | ">=" | "<" | "<=" 
-                          | "lookAtTheWatch" | "yourEyesAreGettingHeavy"
-                          | "fallUnderMySpell" | "goingDeeper" ) 
-                          AdditiveExpression } ;
+                   ::= AdditiveExpression { RelationalOperator AdditiveExpression } ;
+
+RelationalOperator
+                   ::= ">" | ">=" | "<" | "<="
+                    | "lookAtTheWatch" | "yourEyesAreGettingHeavy"
+                    | "fallUnderMySpell" | "goingDeeper" ;
 
 AdditiveExpression
-                  ::= MultiplicativeExpression
-                      { ( "+" | "-" ) MultiplicativeExpression } ;
+                   ::= MultiplicativeExpression { ( "+" | "-" ) MultiplicativeExpression } ;
 
 MultiplicativeExpression
-                  ::= UnaryExpression
-                      { ( "*" | "/" | "%" ) UnaryExpression } ;
+                   ::= UnaryExpression { ( "*" | "/" | "%" ) UnaryExpression } ;
 
-UnaryExpression ::= [ ("+" | "-" | "!") ] PrimaryExpression ;
+UnaryExpression  ::= ( "await" | "surrenderTo" ) UnaryExpression
+                   | [ ("+" | "-" | "!") ] PrimaryExpression ;
 
 PrimaryExpression
-                  ::= Identifier
-                  | Literal
-                  | "(" Expression ")"
-                  | FunctionCall
-                  ;
+                   ::= Identifier
+                   | Literal
+                   | "(" Expression ")"
+                   | FunctionCall
+                   | FunctionExpression
+                   | EntrainExpression ;
 
-FunctionCall    ::= [ "call" ] Identifier "(" [ ArgumentList ] ")" ;
+FunctionCall     ::= [ "call" ] Identifier "(" [ ArgumentList ] ")" ;
 
-ArgumentList    ::= Expression { "," Expression } ;
+EntrainExpression
+                   ::= "entrain" Expression "{" EntrainClause { EntrainClause } [ EntrainDefault ] "}" ;
+
+EntrainStatement ::= EntrainExpression ";" ;
+
+EntrainClause    ::= "when" Pattern [ "if" Expression ] "=>" BlockStatement ;
+EntrainDefault   ::= "otherwise" "=>" BlockStatement ;
+
+Pattern          ::= Literal
+                   | Identifier
+                   | Identifier ":" Type
+                   | Identifier "{" RecordPatternEntry { "," RecordPatternEntry } "}"
+                   | "[" [ Pattern { "," Pattern } [ "," "..." Identifier ] ] "]" ;
+
+RecordPatternEntry ::= Identifier [ ":" Pattern ] [ "=" Expression ] ;
+
+ArgumentList     ::= Expression { "," Expression } ;
 
 SessionDeclaration
-                  ::= "session" Identifier "{" { SessionMember } "}" ;
+                   ::= "session" Identifier "{" { SessionMember } "}" ;
 
-SessionMember   ::= ( "expose" | "conceal" )? 
-                    ( VarDeclarationStatementNoSemicolon 
-                      | FunctionDeclaration 
-                      | ConstructorDeclaration ) ;
+SessionMember    ::= ( "expose" | "conceal" )?
+                       ( VarDeclarationStatementNoSemicolon
+                       | FunctionDeclaration
+                       | ConstructorDeclaration ) ;
 
 ConstructorDeclaration
-                  ::= "suggestion" "constructor" "(" [ ParameterList ] ")" 
-                      BlockStatement ;
+                   ::= "suggestion" "constructor" "(" [ ParameterList ] ")" BlockStatement ;
 
 TranceifyDeclaration
-                  ::= "tranceify" Identifier "{" { VarDefinition } "}" ;
+                   ::= "tranceify" Identifier "{" { VarDefinition } "}" ;
 
-VarDefinition   ::= Identifier ":" Type ";" ;
+VarDefinition    ::= Identifier ":" Type ";" ;
 
 VarDeclarationStatementNoSemicolon
-                  ::= ("induce" | "implant" | "embed") Identifier [ ":" Type ] [ "=" Expression ]
-                  | ("induce" | "implant") Identifier [ ":" Type ] "from" "external" ;
+                   ::= ("induce" | "implant" | "embed") Identifier [ ":" Type ] [ "=" Expression ]
+                   | ("induce" | "implant") Identifier [ ":" Type ] "from" "external" ;
 
-Literal         ::= NumericLiteral
-                  | StringLiteral
-                  | BooleanLiteral ;
+Literal          ::= NumericLiteral | StringLiteral | BooleanLiteral ;
+NumericLiteral   ::= Digit { Digit } [ "." Digit { Digit } ] ;
+StringLiteral    ::= '"' { <char außer '"' oder Zeilenumbruch> } '"' ;
+BooleanLiteral   ::= "true" | "false" ;
 
-NumericLiteral  ::= Digit { Digit } [ "." Digit { Digit } ] ;
-StringLiteral   ::= '"' { <char außer '"' oder Zeilenumbruch> } '"' ;
-BooleanLiteral  ::= "true" | "false" ;
+Type             ::= "number" | "string" | "boolean" | "trance" | Identifier ;
 
-Type            ::= "number" | "string" | "boolean" | "trance"
-                  | Identifier ; // Für benutzerdefinierte Typen, struct-Namen etc.
-
-Digit           ::= [0-9] ;
+Digit            ::= [0-9] ;
 ```
 
 ---
@@ -602,23 +747,74 @@ Digit           ::= [0-9] ;
 
 ### 5.1 Variablen und Scope
 
-- **`induce varName: type = expr;`**: Deklariert eine lokale Variable im aktuellen Block.  
-- **Gültigkeit**: Variablen sind innerhalb des Blockes und seiner Unterblöcke sichtbar (lexikalischer Scope).  
-- **Zuweisung**: `varName = expr;` ändert den Wert einer bereits deklarierten Variable.  
+- **`induce varName: type = expr;`**: Deklariert eine lokale Variable im aktuellen Block.
+- **Gültigkeit**: Variablen sind innerhalb des Blockes und seiner Unterblöcke sichtbar (lexikalischer Scope).
+- **Zuweisung**: `varName = expr;` ändert den Wert einer bereits deklarierten Variable.
 - **Eingabe**: `from external` simuliert Benutzer-/Dateiinput (Implementation abhängig).
 
 ### 5.2 Ein- / Ausgabe
 
-- **`observe expr;`**: Gibt den Wert von `expr` (z. B. String, Zahl, boolean) an das „Trance-Log“ aus (Konsole, UI, etc.).  
-- **`drift(ms);`**: Unterbricht / pausiert den Programmfluss (themenbedingt „Verzögerung in Trance“).  
+- **`observe expr;`**: Gibt den Wert von `expr` (z. B. String, Zahl, boolean) an das „Trance-Log“ aus (Konsole, UI, etc.).
+- **`drift(ms);`**: Unterbricht / pausiert den Programmfluss (themenbedingt „Verzögerung in Trance“).
 
 ### 5.3 Turing-Vollständigkeit
 
-- **Schleifen (while, loop)** bzw. **Rekursion** ermöglichen beliebig lange bzw. wiederholende Prozesse.  
-- **Bedingte Verzweigungen (if/else)** erlauben dynamische Pfadwahl.  
-- **Variablen** speichern veränderbare Werte.  
+- **Schleifen (while, loop)** bzw. **Rekursion** ermöglichen beliebig lange bzw. wiederholende Prozesse.
+- **Bedingte Verzweigungen (if/else)** erlauben dynamische Pfadwahl.
+- **Variablen** speichern veränderbare Werte.
 
 Diese Faktoren reichen aus, um Turing-Vollständigkeit zu gewährleisten.
+
+### 5.4 Fehlerbehandlung: Albtraum-Management
+
+HypnoScript kennt Ausnahmen als **Nightmares**. Sobald ein Nightmare ausgelöst wird, bricht die aktuelle Suggestion ab, bis eine passende Recovery-Suggestion eingreift.
+
+- `tryOrAwaken(action, recovery)`: Führt `action` aus und ruft bei Nightmare `recovery` auf.
+- `ensureAwakening(action, cleanup)`: Stellt sicher, dass `cleanup` ausgeführt wird (ähnlich `finally`).
+- `lucidFallback`: Ausdrucksebene für Nullish- bzw. Fehler-Ersatzwerte.
+- `dreamReach`: Optional-Chaining schützt vor `subconscious`-Nullzuständen.
+
+```plaintext
+tryOrAwaken(
+    suggestion() {
+        surrenderTo fetchSuggestion("https://hypno.api/session");
+    },
+    suggestion(nightmare: Nightmare) {
+        murmur "Albtraum: " + nightmare.message;
+        observe "Wir atmen tief durch und versuchen es erneut.";
+    }
+);
+
+ensureAwakening(
+    suggestion() { openVault(); },
+    suggestion() { closeVault(); }
+);
+```
+
+### 5.5 Parallelität und Trance-Synchronisation
+
+Asynchrone Suggestionen (`mesmerize`, `await`) und die Bibliotheken AuraAsync sowie DeepMind ermöglichen nebeneinander laufende Hypnosen.
+
+- `parallelTrance` startet mehrere Suggestionen gleichzeitig und wartet auf Abschluss.
+- `sequentialTrance` erzwingt Reihenfolge, nützlich beim Aktualisieren von `sharedTrance`-Zuständen.
+- `auraToken` / `cancelSuggestion` erlauben Abbrüche.
+- `sharedTrance`-Variablen sind per Definition threadsicher; für kritische Abschnitte kann `anchor` + `oscillate` zur Koordination genutzt werden.
+
+```plaintext
+Focus {
+    sharedTrance induce stage: string = "warmup";
+
+    parallelTrance([
+        suggestion() { stage = "intro"; surrenderTo lullaby(); },
+        suggestion() { observe "Publikum zählt rückwärts"; }
+    ]);
+
+    sequentialTrance([
+        suggestion() { stage = "climax"; },
+        suggestion() { command "3...2...1..."; }
+    ]);
+} Relax
+```
 
 ---
 
@@ -655,7 +851,7 @@ Focus {
     induce numStr: string = "42";
     induce num: number = toNumber(numStr);
     observe "Konvertiert: " + num;
-    
+
     if (isNumber(num)) {
         observe "Es ist eine Zahl!";
     }
@@ -706,11 +902,11 @@ Focus {
     induce radius: number = 5.0;
     induce area: number = hypnoticPi() * power(radius, 2);
     observe "Kreisfläche: " + area;
-    
+
     induce angle: number = 45.0;
     induce sine: number = pendulumSin(angle);
     observe "Sinus von " + angle + " Grad: " + sine;
-    
+
     induce randomNum: number = unconsciousInt(1, 100);
     observe "Zufällige Zahl: " + randomNum;
 } Relax
@@ -756,13 +952,13 @@ Focus {
     induce message: string = "  Willkommen in der Trance  ";
     induce cleaned: string = trimEdges(message);
     observe cleaned;
-    
+
     induce words: string[] = fragmentMemory(cleaned, " ");
     observe "Anzahl Wörter: " + vaultSize(words);
-    
+
     induce mantra: string = repeatMantra("Om ", 3);
     observe mantra;  // "Om Om Om "
-    
+
     induce reversed: string = reverseTrance("Trance");
     observe reversed;  // "ecnarT"
 } Relax
@@ -839,7 +1035,7 @@ Focus {
         awaken x * 2;
     });
     observe doubled;  // [2, 4, 6, 8, 10]
-    
+
     // Stack verwenden
     induce stack = MindStack();
     stack.push(10);
@@ -847,7 +1043,7 @@ Focus {
     stack.push(30);
     observe stack.pop();  // 30
     observe stack.peek();  // 20
-    
+
     // Map verwenden
     induce map = MemoryMap();
     map.store("name", "Alice");
@@ -899,11 +1095,11 @@ suggestion extractSecond(timestamp: number): number
 Focus {
     induce now: number = nowInTrance();
     observe "Aktueller Timestamp: " + now;
-    
+
     induce tomorrow: number = addDays(now, 1);
     induce formatted: string = formatTimeMoment(tomorrow, "YYYY-MM-DD");
     observe "Morgen: " + formatted;
-    
+
     pauseReality(2000);  // Warte 2 Sekunden
     observe "2 Sekunden später...";
 } Relax
@@ -949,16 +1145,16 @@ Focus {
     repeatAction(5, suggestion() {
         observe "In Trance...";
     });
-    
+
     // Verzögerte Ausführung
     observe "Vor der Verzögerung";
     delayedSuggestion(suggestion() {
         observe "Nach 3 Sekunden";
     }, 3000);
-    
+
     // Bedingte Ausführung
     induce x: number = 10;
-    ifTranced(x lookAtTheWatch 5, 
+    ifTranced(x lookAtTheWatch 5,
         suggestion() { observe "x ist größer als 5"; },
         suggestion() { observe "x ist nicht größer als 5"; }
     );
@@ -1008,12 +1204,12 @@ Focus {
     observe "";  // Zeilenumbruch
     command "WICHTIGE NACHRICHT!";
     murmur "Debug-Info: x=42";
-    
+
     // Formatierte Ausgabe
     induce name: string = "Alice";
     induce age: number = 30;
     observeFormatted("Name: {}, Alter: {}", name, age);
-    
+
     // Tabellen-Ausgabe
     induce data: any[][] = [
         ["Name", "Alter"],
@@ -1021,17 +1217,116 @@ Focus {
         ["Bob", 25]
     ];
     observeTable(data);
-    
+
     // Benutzer-Eingabe
     induce userName: string = requestInput("Wie heißt du? ");
     observe "Hallo, " + userName + "!";
-    
+
     induce userAge: number = requestNumber("Wie alt bist du? ");
     if (userAge yourEyesAreGettingHeavy 18) {
         observe "Du bist volljährig!";
     }
 } Relax
 ```
+
+### 6.8 AuraAsync (Asynchronität & Tasks)
+
+AuraAsync orchestriert hypnotische Hintergrundprozesse und liefert Kontrollstrukturen für komplexe Aufgabenketten.
+
+```plaintext
+mesmerize suggestion lull(ms: number): trance              // Resolves nach Ablauf der Zeit
+mesmerize suggestion awakenAfter(ms: number, action: suggestion)  // Verzögert Aktion, liefert AuraToken
+mesmerize suggestion mesmerizeAll(actions: suggestion[]): trance[]  // Wartet auf alle Suggestions
+mesmerize suggestion tranceRace(actions: suggestion[]): any         // Liefert erstes Ergebnis
+suggestion auraToken(): AuraToken                          // Erzeugt Abbruch-Token
+suggestion cancelSuggestion(token: AuraToken)              // Bricht geplante Aktion ab
+```
+
+**Beispiel:**
+
+```plaintext
+mesmerize suggestion stageEntry() {
+    observe "Vorhang zu";
+    await lull(1500);
+    command "Vorhang auf!";
+}
+
+Focus {
+    induce token = surrenderTo awakenAfter(5000, suggestion() { command "Applaus"; });
+    surrenderTo stageEntry();
+    cancelSuggestion(token);  // optionaler Abbruch
+} Relax
+```
+
+> Hinweis: `AuraToken` ist eine von AuraAsync bereitgestellte `tranceify`-Struktur für Cancel-Operationen.
+
+### 6.9 DreamWeaver Patterns (Pattern Matching)
+
+DreamWeaver ergänzt `entrain` um Hilfsfunktionen, um Muster deklarativ zu beschreiben und zu validieren.
+
+```plaintext
+suggestion weave(target: any, pattern: PatternDefinition): boolean
+suggestion captureBindings(target: any, pattern: PatternDefinition): MemoryMap
+suggestion guardWith(target: any, predicate: suggestion): boolean
+suggestion compileSigil(pattern: string): PatternDefinition
+suggestion matchMany(values: any[], pattern: PatternDefinition): any[]
+```
+
+Die Bibliothek erlaubt es, häufig genutzte Muster als wiederverwendbare Sigille zu hinterlegen und sorgt für ein konsistentes Bindungs-Layout in komplexen `entrain`-Konstrukten.
+
+> Hinweis: `PatternDefinition` ist ein `tranceify`-Record, der Pattern-Strukturen, Guards und Metadaten bündelt.
+
+### 6.10 Stagecraft Visions (UI & Präsentation)
+
+Stagecraft Visions steuert visuelle und auditive Effekte für Bühnen-Hypnosen, Dashboards oder CLI-Inszenierungen.
+
+```plaintext
+suggestion renderSpiral(frames: number)                    // ASCII-/Canvas-Spirale erzeugen
+suggestion projectAura(message: string, style?: StageStyle) // Gestylte Ausgabe
+suggestion dimLights(level: number)                         // Farben/Helligkeit anpassen
+suggestion cueSoundtrack(track: string)                     // Hintergrundmusik triggern
+suggestion presentTimeline(events: any[]): void             // Timeline/Step-Visualizer rendern
+```
+
+### 6.11 HypnoNet (Netzwerk & APIs)
+
+HypnoNet verbindet HypnoScript mit externen Diensten, APIs und Webhooks.
+
+```plaintext
+mesmerize suggestion fetchSuggestion(url: string, options?: NetOptions): trance
+mesmerize suggestion postSuggestion(url: string, payload: any, options?: NetOptions): trance
+mesmerize suggestion openMindStream(url: string, onChunk: suggestion): AuraToken
+suggestion encodeMindLink(payload: any): string
+suggestion decodeMindLink(serialized: string): any
+```
+
+### 6.12 RealityAnchor (Persistenz & Storage)
+
+RealityAnchor verwaltet dauerhafte Ankerpunkte – Dateien, Datenbanken oder In-Memory-Vaults.
+
+```plaintext
+suggestion storeMemory(anchor: string, value: any)
+suggestion recallMemory(anchor: string): any
+suggestion forgetMemory(anchor: string)
+suggestion listAnchors(): string[]
+mesmerize suggestion syncVault(path: string): void
+```
+
+### 6.13 LucidDiagnostics (Debugging & Telemetrie)
+
+LucidDiagnostics unterstützt beim Messen, Protokollieren und Visualisieren von Trance-Zuständen.
+
+```plaintext
+suggestion startTracer(label: string): TraceHandle
+suggestion recordLucidity(message: string)
+suggestion probeDepth(action: suggestion): number
+suggestion captureDreamDump(): string
+suggestion withHypnoTimer(label: string, action: suggestion): number
+```
+
+> Hinweis: `TraceHandle` kapselt interne Timer- und Context-Daten und kann mit `captureDreamDump` serialisiert werden.
+
+**Szenario:** HypnoNet kombiniert mit DreamWeaver Patterns lässt sich verwenden, um externe Daten zu holen, via `entrain` zu analysieren und anschließend auf der Bühne mit Stagecraft glamourös aufzubereiten.
 
 ---
 
@@ -1063,7 +1358,7 @@ Focus {
 
 **Erwartete Ausgabe**:
 
-```
+```plaintext
 Starte jetzt das HypnoScript-Programm...
 Hello Trance!
 Hello Trance!
@@ -1090,7 +1385,7 @@ Focus {
 } Relax
 ```
 
-_(Implementierungsspezifisch muss natürlich definiert sein, wie „from external“ den Wert für `n` erhält.)_
+> Hinweis: Implementierungen müssen definieren, wie `from external` den Wert für `n` bezieht.
 
 ---
 
