@@ -168,7 +168,7 @@ Focus {
   
   while (keyIndex fallUnderMySpell vaultSize(keys)) {
       induce key: string = peekAtMemory(keys, keyIndex);
-      induce value: any = sessionLog.retrieve(key);
+      induce value: string | number = sessionLog.retrieve(key);
       observe "  • " + key + ": " + value;
       keyIndex = keyIndex + 1;
   }
