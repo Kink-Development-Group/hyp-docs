@@ -758,7 +758,7 @@ Focus {
     observe cleaned;
     
     induce words: string[] = fragmentMemory(cleaned, " ");
-    observe "Anzahl Wörter: " + measureDepth(words);
+    observe "Anzahl Wörter: " + vaultSize(words);
     
     induce mantra: string = repeatMantra("Om ", 3);
     observe mantra;  // "Om Om Om "
