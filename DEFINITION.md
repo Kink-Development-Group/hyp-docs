@@ -432,37 +432,65 @@ Focus {
 Nachfolgend eine beispielhafte EBNF-Skizze, die die Kernsyntax (ohne alle Operator-Synonyme) abbildet. Die Synonyme (`youAreFeelingVerySleepy`, etc.) könnten in der Praxis direkt auf die Standardoperatoren gemappt werden.
 
 ```ebnf
-Program         ::= "Focus" Block "Relax" ;
+Program         ::= "Focus" Block [ FinaleBlock ] "Relax" ;
 
 Block           ::= { Statement } ;
 
 Statement       ::= VarDeclarationStatement
+                  | FreezeStatement
                   | ExpressionStatement
                   | IfStatement
                   | WhileStatement
                   | LoopStatement
+                  | PendulumStatement
                   | BreakStatement
                   | ContinueStatement
                   | FunctionDeclaration
                   | ReturnStatement
                   | ObserveStatement
+                  | WhisperStatement
+                  | CommandStatement
                   | EntranceBlock
                   | SessionDeclaration
                   | TranceifyDeclaration
                   | BlockStatement
+                  | AnchorStatement
+                  | OscillateStatement
+                  | DriftStatement
                   ;
 
-BlockStatement  ::= ("deepFocus" |) "{" { Statement } "}" 
+BlockStatement  ::= ("deepFocus" | "deeperStill" |) "{" { Statement } "}" 
                   ;
 
 EntranceBlock   ::= "entrance" BlockStatement ;
+FinaleBlock     ::= "finale" BlockStatement ;
 
 VarDeclarationStatement
-                  ::= "induce" Identifier [ ":" Type ] [ "=" Expression ] ";"
-                  | "induce" Identifier [ ":" Type ] "from" "external" ";" ;
+                  ::= ("induce" | "implant" | "embed") Identifier [ ":" Type ] [ "=" Expression ] ";"
+                  | ("induce" | "implant") Identifier [ ":" Type ] "from" "external" ";" ;
+
+FreezeStatement ::= "freeze" Identifier ":" Type "=" Expression ";" ;
 
 ObserveStatement
                   ::= "observe" Expression ";" ;
+
+WhisperStatement
+                  ::= "whisper" Expression ";" ;
+
+CommandStatement
+                  ::= "command" Expression ";" ;
+
+DriftStatement  ::= ("drift" | "suspend" | "freeze") "(" Expression ")" ";" ;
+
+AnchorStatement ::= "anchor" Identifier "=" Expression ";" ;
+
+OscillateStatement
+                  ::= "oscillate" Identifier ";" ;
+
+PendulumStatement
+                  ::= "pendulum" "(" [ VarDeclarationStatementNoSemicolon ] 
+                                   ";" Expression ";" Expression ")"
+                      BlockStatement ;
 
 IfStatement     ::= "if" "(" Expression ")" BlockStatement
                     [ "else" BlockStatement ] ;
@@ -497,21 +525,23 @@ AssignmentExpression
 
 LogicalOrExpression
                   ::= LogicalAndExpression
-                      { "||" LogicalAndExpression } ;
+                      { ( "||" | "resistanceIsFutile" ) LogicalAndExpression } ;
 
 LogicalAndExpression
                   ::= EqualityExpression
-                      { "&&" EqualityExpression } ;
+                      { ( "&&" | "underMyControl" ) EqualityExpression } ;
 
 EqualityExpression
                   ::= RelationalExpression
-                      { ( "==" | "!=" | "youAreFeelingVerySleepy" ) 
-                          RelationalExpression } ; // Bsp. für Synonym
+                      { ( "==" | "!=" 
+                          | "youAreFeelingVerySleepy" | "youCannotResist" ) 
+                          RelationalExpression } ;
 
 RelationalExpression
                   ::= AdditiveExpression
                       { ( ">" | ">=" | "<" | "<=" 
-                          | "lookAtTheWatch" | "fallUnderMySpell" ) 
+                          | "lookAtTheWatch" | "yourEyesAreGettingHeavy"
+                          | "fallUnderMySpell" | "goingDeeper" ) 
                           AdditiveExpression } ;
 
 AdditiveExpression
@@ -553,8 +583,8 @@ TranceifyDeclaration
 VarDefinition   ::= Identifier ":" Type ";" ;
 
 VarDeclarationStatementNoSemicolon
-                  ::= "induce" Identifier [ ":" Type ] [ "=" Expression ]
-                  | "induce" Identifier [ ":" Type ] "from" "external" ;
+                  ::= ("induce" | "implant" | "embed") Identifier [ ":" Type ] [ "=" Expression ]
+                  | ("induce" | "implant") Identifier [ ":" Type ] "from" "external" ;
 
 Literal         ::= NumericLiteral
                   | StringLiteral
