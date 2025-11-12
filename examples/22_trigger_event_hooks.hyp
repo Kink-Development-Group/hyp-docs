@@ -1,0 +1,195 @@
+Focus {
+
+  entrance {
+      observe "=== Trigger & Event-Hooks Demo ===";
+      observe "Demonstriert die Verwendung von Triggers als Event-Callbacks";
+      drift(500);
+  }
+
+  // Beispiel 1: Einfacher Cleanup-Trigger
+  observe "";
+  observe "--- Beispiel 1: Cleanup-Trigger ---";
+
+  induce resourceHandle: number = 42;
+  induce connectionOpen: boolean = true;
+
+  trigger onCleanup = suggestion() {
+      command "🧹 Aufräumen wird durchgeführt...";
+      resourceHandle = 0;
+      connectionOpen = false;
+      observe "Ressourcen erfolgreich freigegeben!";
+  };
+
+  observe "Ressource initialisiert: " + resourceHandle;
+
+  // Beispiel 2: Wiederholungs-Trigger mit DeepMind
+  observe "";
+  observe "--- Beispiel 2: Wiederholungs-Trigger ---";
+
+  induce tickCount: number = 0;
+
+  trigger onTick = suggestion() {
+      tickCount = tickCount + 1;
+      whisper "⏱️ Tick " + tickCount + " ";
+  };
+
+  observe "Starte Timer...";
+  repeatAction(5, onTick);
+  observe "";
+  observe "Timer beendet. Finale Zählung: " + tickCount;
+
+  // Beispiel 3: Parametrisierte Error-Handler-Trigger
+  observe "";
+  observe "--- Beispiel 3: Parametrisierte Trigger ---";
+
+  trigger onError = suggestion(errorCode: number, message: string) {
+      command "⚠️ FEHLER [" + errorCode + "]: " + message;
+      drift(500);
+  };
+
+  trigger onSuccess = suggestion(message: string) {
+      observe "✅ ERFOLG: " + message;
+  };
+
+  induce value: number = 150;
+
+  if (value lookAtTheWatch 100) {
+      onError(400, "Wert ist zu groß (max: 100)");
+  } else {
+      onSuccess("Wert liegt im gültigen Bereich");
+  }
+
+  // Beispiel 4: Trigger als Callback für Array-Operationen
+  observe "";
+  observe "--- Beispiel 4: Trigger als Callback ---";
+
+  induce numbers: number[] = [1, 2, 3, 4, 5];
+
+  trigger doubler = suggestion(x: number): number {
+      awaken x * 2;
+  };
+
+  trigger isEven = suggestion(x: number): boolean {
+      awaken (x % 2) youAreFeelingVerySleepy 0;
+  };
+
+  induce doubled = mapMemories(numbers, doubler);
+  induce evens = filterMemories(numbers, isEven);
+
+  observe "Original: " + numbers;
+  observe "Verdoppelt: " + doubled;
+  observe "Gerade Zahlen: " + evens;
+
+  // Beispiel 5: Trigger mit State-Management
+  observe "";
+  observe "--- Beispiel 5: State-Management-Trigger ---";
+
+  induce stage: string = "init";
+
+  trigger transitionTo = suggestion(newStage: string) {
+      observe "Übergang: " + stage + " → " + newStage;
+      stage = newStage;
+      drift(300);
+  };
+
+  transitionTo("warmup");
+  transitionTo("active");
+  transitionTo("cooldown");
+  transitionTo("complete");
+
+  observe "Finale Stage: " + stage;
+
+  // Beispiel 6: Callbacks in Sessions (ohne verschachtelte Trigger)
+  observe "";
+  observe "--- Beispiel 6: Callbacks in Session-Klassen ---";
+
+  session EventEmitter {
+      expose eventCount: number;
+      conceal eventHandler: suggestion;
+
+      suggestion constructor() {
+          this.eventCount = 0;
+          // Anonyme suggestion-Expression für Callback
+          this.eventHandler = suggestion(eventName: string) {
+              this.eventCount = this.eventCount + 1;
+              observe "📢 Event empfangen: " + eventName + " (Total: " + this.eventCount + ")";
+          };
+      }
+
+      suggestion emit(eventName: string) {
+          call this.eventHandler(eventName);
+      }
+  }
+
+  induce emitter = EventEmitter();
+  emitter.emit("user_login");
+  emitter.emit("data_loaded");
+  emitter.emit("render_complete");
+
+  observe "Gesamte Events verarbeitet: " + emitter.eventCount;
+
+  // Beispiel 7: Top-Level Trigger mit Session-Interaktion
+  observe "";
+  observe "--- Beispiel 7: Top-Level Trigger für Sessions ---";
+
+  session Counter {
+      expose value: number;
+
+      suggestion constructor() {
+          this.value = 0;
+      }
+
+      suggestion increment() {
+          this.value = this.value + 1;
+      }
+  }
+
+  trigger onCounterUpdate = suggestion(counter: Counter, label: string) {
+      counter.increment();
+      observe label + " - Neuer Wert: " + counter.value;
+  };
+
+  induce myCounter = Counter();
+  onCounterUpdate(myCounter, "Update 1");
+  onCounterUpdate(myCounter, "Update 2");
+  onCounterUpdate(myCounter, "Update 3");
+
+  observe "Finale Counter-Wert: " + myCounter.value;
+
+  // Beispiel 8: Asynchroner Trigger mit delayed execution
+  observe "";
+  observe "--- Beispiel 8: Verzögerte Trigger-Ausführung ---";
+
+  trigger delayedNotification = suggestion() {
+      observe "🔔 Verzögerte Benachrichtigung wurde ausgelöst!";
+      command "Dies erscheint nach einer Verzögerung";
+  };
+
+  observe "Plane verzögerte Ausführung...";
+  delayedSuggestion(delayedNotification, 2000);
+  observe "Trigger wurde geplant (wird in 2 Sekunden ausgeführt)";
+  drift(2500);  // Warte, bis der Trigger ausgeführt wurde
+
+  finale {
+      observe "";
+      observe "=== Finale: Cleanup-Phase ===";
+      drift(500);
+
+      // Rufe den Cleanup-Trigger auf
+      onCleanup();
+
+      observe "";
+      observe "Status:";
+      observe "  • Ressource: " + resourceHandle;
+      observe "  • Verbindung: " + connectionOpen;
+      observe "  • Tick-Zähler: " + tickCount;
+      observe "  • Event-Zähler: " + emitter.eventCount;
+      observe "  • Counter-Wert: " + myCounter.value;
+
+      observe "";
+      observe "=== Trigger-Demo abgeschlossen ===";
+      observe "Trigger sind Top-Level Event-Hooks in HypnoScript! ✨";
+      observe "Für lokale Callbacks: verwende anonyme suggestion-Expressions";
+  }
+
+} Relax

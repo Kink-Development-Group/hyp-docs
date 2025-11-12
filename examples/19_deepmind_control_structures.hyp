@@ -1,0 +1,121 @@
+Focus {
+
+  entrance {
+      observe "=== DeepMind Kontrollstrukturen Demo ===";
+      drift(500);
+  }
+
+  // repeatAction - Wiederhole eine Aktion mehrmals
+  observe "Wiederhole 'Om' 5 mal:";
+  repeatAction(5, suggestion() {
+      whisper "Om ";
+  });
+  observe "";
+
+  // delayedSuggestion - Verzögerte Ausführung
+  observe "Starte verzögerte Nachricht (2 Sekunden)...";
+  delayedSuggestion(suggestion() {
+      observe "Diese Nachricht erscheint nach 2 Sekunden!";
+  }, 2000);
+  observe "Nachricht wurde geplant.";
+
+  // ifTranced - Bedingte Ausführung als Funktion
+  induce age: number = 25;
+  ifTranced(age yourEyesAreGettingHeavy 18,
+      suggestion() { observe "Volljährig!"; },
+      suggestion() { observe "Minderjährig!"; }
+  );
+
+  // Funktionskomposition
+  observe "";
+  observe "=== Funktionskomposition ===";
+  
+  suggestion double(x: number): number {
+      awaken x * 2;
+  }
+  
+  suggestion addTen(x: number): number {
+      awaken x + 10;
+  }
+  
+  // Compose: f(g(x)) - erst addTen, dann double
+  induce composed = compose(double, addTen);
+  induce result1: number = composed(5);  // double(addTen(5)) = double(15) = 30
+  observe "compose(double, addTen)(5) = " + result1;
+
+  // Pipe: g(f(x)) - erst double, dann addTen
+  induce piped = pipe(double, addTen);
+  induce result2: number = piped(5);  // addTen(double(5)) = addTen(10) = 20
+  observe "pipe(double, addTen)(5) = " + result2;
+
+  // repeatUntil - Wiederhole bis Bedingung erfüllt
+  observe "";
+  observe "=== repeatUntil Demo ===";
+  induce count: number = 0;
+  repeatUntil(
+      suggestion(): boolean { awaken count yourEyesAreGettingHeavy 5; },
+      suggestion() {
+          observe "Count: " + count;
+          count = count + 1;
+      }
+  );
+
+  // repeatWhile - Wiederhole solange Bedingung wahr
+  observe "";
+  observe "=== repeatWhile Demo ===";
+  induce n: number = 3;
+  repeatWhile(
+      suggestion(): boolean { awaken n lookAtTheWatch 0; },
+      suggestion() {
+          observe "Countdown: " + n;
+          n = n - 1;
+      }
+  );
+  observe "Aufwachen!");
+
+  // tryOrAwaken - Fehlerbehandlung (konzeptionell)
+  observe "";
+  observe "=== Fehlerbehandlung (tryOrAwaken) ===";
+  tryOrAwaken(
+      suggestion() {
+          observe "Versuche riskante Operation...";
+          // Hier könnte ein Fehler auftreten
+          observe "Operation erfolgreich!";
+      },
+      suggestion() {
+          observe "Fehler abgefangen - Aufwachen aus Alptraum!";
+      }
+  );
+
+  // ensureAwakening - Cleanup garantiert (try-finally)
+  observe "";
+  observe "=== ensureAwakening (Cleanup) ===";
+  ensureAwakening(
+      suggestion() {
+          observe "Führe Hauptaktion aus...";
+          drift(500);
+      },
+      suggestion() {
+          observe "Cleanup wird immer ausgeführt!";
+      }
+  );
+
+  // Parallele und sequentielle Ausführung
+  observe "";
+  observe "=== Sequentielle Trance ===";
+  induce actions: suggestion[] = [
+      suggestion() { observe "Aktion 1"; drift(300); },
+      suggestion() { observe "Aktion 2"; drift(300); },
+      suggestion() { observe "Aktion 3"; drift(300); }
+  ];
+  
+  sequentialTrance(actions);
+  observe "Alle Aktionen sequentiell abgeschlossen!";
+
+  finale {
+      observe "";
+      observe "=== DeepMind Demo beendet ===";
+      observe "Du kehrst zurück ins Bewusstsein...";
+  }
+
+} Relax

@@ -1,0 +1,201 @@
+Focus {
+
+  entrance {
+      observe "=== Umfassendes HypnoScript Beispiel ===";
+      observe "Demonstriert alle wichtigen Features der Sprache";
+      drift(1000);
+  }
+
+  // ===== Teil 1: Hypnotische Session-Klasse =====
+  observe "";
+  observe "--- Teil 1: Hypnose-Session Klasse ---";
+  
+  session HypnoSubject {
+      expose name: string;
+      conceal tranceDepth: number;
+      expose isInTrance: boolean;
+      
+      suggestion constructor(subjectName: string) {
+          this.name = subjectName;
+          this.tranceDepth = 0;
+          this.isInTrance = false;
+      }
+      
+      suggestion induceHypnosis() {
+          observe this.name + " geht in Trance...";
+          this.isInTrance = true;
+          this.tranceDepth = 0;
+          drift(500);
+      }
+      
+      suggestion deepenTrance() {
+          if (this.isInTrance) {
+              this.tranceDepth = this.tranceDepth + 1;
+              observe this.name + " vertieft die Trance... Tiefe: " + this.tranceDepth;
+              drift(300);
+          } else {
+              observe this.name + " ist nicht in Trance!";
+          }
+      }
+      
+      suggestion awaken() {
+          observe this.name + " erwacht aus der Trance!";
+          this.isInTrance = false;
+          this.tranceDepth = 0;
+      }
+      
+      suggestion getStatus(): string {
+          if (this.isInTrance) {
+              awaken this.name + " ist in Trance (Tiefe: " + this.tranceDepth + ")";
+          } else {
+              awaken this.name + " ist wach";
+          }
+      }
+  }
+
+  // Erstelle Hypnose-Subjekte
+  induce alice = HypnoSubject("Alice");
+  induce bob = HypnoSubject("Bob");
+
+  // Hypnotisiere Alice
+  alice.induceHypnosis();
+  alice.deepenTrance();
+  alice.deepenTrance();
+  alice.deepenTrance();
+  observe alice.getStatus();
+
+  // ===== Teil 2: Hypnotische Operatoren =====
+  observe "";
+  observe "--- Teil 2: Hypnotische Operatoren ---";
+  
+  if (alice.isInTrance youAreFeelingVerySleepy true underMyControl 
+      alice.tranceDepth yourEyesAreGettingHeavy 2) {
+      observe "Alice ist tief genug in Trance!";
+  }
+
+  // ===== Teil 3: Standard-Bibliothek Funktionen =====
+  observe "";
+  observe "--- Teil 3: Mathematische Berechnungen ---";
+  
+  // Berechne optimale Trance-Tiefe
+  induce targetDepth: number = 5;
+  induce currentDepth: number = alice.tranceDepth;
+  induce difference: number = absoluteDepth(targetDepth - currentDepth);
+  
+  observe "Ziel-Tiefe: " + targetDepth;
+  observe "Aktuelle Tiefe: " + currentDepth;
+  observe "Differenz: " + difference;
+
+  // Vertiefe bis zur Ziel-Tiefe
+  repeatWhile(
+      suggestion(): boolean { 
+          awaken alice.tranceDepth fallUnderMySpell targetDepth; 
+      },
+      suggestion() {
+          alice.deepenTrance();
+      }
+  );
+
+  // ===== Teil 4: String-Manipulation =====
+  observe "";
+  observe "--- Teil 4: Hypnotische Suggestionen ---";
+  
+  induce suggestion1: string = "Du bist sehr entspannt";
+  induce suggestion2: string = "deine Augen werden schwer";
+  induce suggestion3: string = "du gehst tiefer und tiefer";
+  
+  induce suggestions: string[] = [suggestion1, suggestion2, suggestion3];
+  induce fullSuggestion: string = mergeThoughts(suggestions, ", ");
+  
+  observe "Vollständige Suggestion: " + fullSuggestion;
+  
+  // Wiederhole als Mantra
+  induce mantra: string = repeatMantra("Entspannung ", 3);
+  observe "Mantra: " + mantra;
+
+  // ===== Teil 5: Datenstrukturen =====
+  observe "";
+  observe "--- Teil 5: Erinnerungs-Speicher ---";
+  
+  induce memoryMap = MemoryMap();
+  memoryMap.store("session_start", "14:30");
+  memoryMap.store("subject_count", 2);
+  memoryMap.store("session_type", "Tiefenentspannung");
+  
+  observe "Session-Info:";
+  observe "  Start: " + memoryMap.retrieve("session_start");
+  observe "  Anzahl Subjekte: " + memoryMap.retrieve("subject_count");
+  observe "  Typ: " + memoryMap.retrieve("session_type");
+
+  // Stack für Trance-Level Tracking
+  induce levelStack = MindStack();
+  levelStack.push("Wach");
+  levelStack.push("Leicht entspannt");
+  levelStack.push("Mittlere Trance");
+  levelStack.push("Tiefe Trance");
+  levelStack.push("Somnambulismus");
+  
+  observe "";
+  observe "Trance-Level (von tief zu wach):";
+  while (!levelStack.isEmpty()) {
+      observe "  " + levelStack.pop();
+  }
+
+  // ===== Teil 6: Erweiterte Features =====
+  observe "";
+  observe "--- Teil 6: Erweiterte Hypnose-Features ---";
+  
+  // Freeze wichtige Konstanten
+  freeze MAX_TRANCE_DEPTH: number = 10;
+  observe "Maximale Trance-Tiefe: " + MAX_TRANCE_DEPTH;
+
+  // Anchor für Notfall-Rückkehr
+  anchor emergencyExit = alice.tranceDepth;
+  observe "Notfall-Anker gesetzt bei Tiefe: " + emergencyExit;
+
+  // Oscillate für Pendel-Induktion
+  induce pendulumLeft: boolean = true;
+  observe "Pendel-Induktion:";
+  whisper "Links ";
+  oscillate pendulumLeft;
+  whisper "Rechts ";
+  oscillate pendulumLeft;
+  whisper "Links ";
+  oscillate pendulumLeft;
+  observe "Rechts";
+
+  // ===== Teil 7: Zufällige Suggestion =====
+  observe "";
+  observe "--- Teil 7: Unbewusste Auswahl ---";
+  
+  induce randomChoice: number = unconsciousInt(1, 3);
+  
+  if (randomChoice youAreFeelingVerySleepy 1) {
+      observe "Unbewusste Wahl: Fokussiere auf deinen Atem";
+  } else if (randomChoice youAreFeelingVerySleepy 2) {
+      observe "Unbewusste Wahl: Visualisiere einen Strand";
+  } else {
+      observe "Unbewusste Wahl: Zähle rückwärts von 100";
+  }
+
+  // ===== Finale: Aufwachen =====
+  finale {
+      observe "";
+      observe "=== Session-Abschluss ===";
+      observe "Bereite das Aufwachen vor...";
+      drift(1000);
+      
+      alice.awaken();
+      bob.awaken();
+      
+      observe "";
+      observe "Beide Subjekte sind aufgewacht.";
+      observe "Status Alice: " + alice.getStatus();
+      observe "Status Bob: " + bob.getStatus();
+      
+      observe "";
+      observe "=== Session erfolgreich beendet ===";
+      observe "Vielen Dank für die Nutzung von HypnoScript!";
+  }
+
+} Relax

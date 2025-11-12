@@ -1,0 +1,112 @@
+Focus {
+
+  entrance {
+      observe "=== Erweiterte Hypnotische Features Demo ===";
+  }
+
+  // Verwende alle hypnotischen Operator-Synonyme
+  induce x: number = 10;
+  induce y: number = 10;
+  induce z: number = 5;
+
+  observe "=== Hypnotische Operator-Synonyme ===";
+  
+  // youAreFeelingVerySleepy (==)
+  if (x youAreFeelingVerySleepy y) {
+      observe "x youAreFeelingVerySleepy y: x ist gleich y!";
+  }
+
+  // youCannotResist (!=)
+  if (x youCannotResist z) {
+      observe "x youCannotResist z: x ist ungleich z!";
+  }
+
+  // lookAtTheWatch (>)
+  if (x lookAtTheWatch z) {
+      observe "x lookAtTheWatch z: x ist größer als z!";
+  }
+
+  // fallUnderMySpell (<)
+  if (z fallUnderMySpell x) {
+      observe "z fallUnderMySpell x: z ist kleiner als x!";
+  }
+
+  // yourEyesAreGettingHeavy (>=)
+  if (x yourEyesAreGettingHeavy y) {
+      observe "x yourEyesAreGettingHeavy y: x ist größer oder gleich y!";
+  }
+
+  // goingDeeper (<=)
+  if (z goingDeeper x) {
+      observe "z goingDeeper x: z ist kleiner oder gleich x!";
+  }
+
+  // underMyControl (&&)
+  if (x lookAtTheWatch 5 underMyControl y lookAtTheWatch 5) {
+      observe "Beide Bedingungen erfüllt mit underMyControl (&&)!";
+  }
+
+  // resistanceIsFutile (||)
+  if (x lookAtTheWatch 100 resistanceIsFutile y youAreFeelingVerySleepy 10) {
+      observe "Mindestens eine Bedingung erfüllt mit resistanceIsFutile (||)!";
+  }
+
+  observe "";
+  observe "=== Neue Sprachfeatures ===";
+
+  // Freeze - Unveränderliche Variable
+  freeze PI: number = 3.14159;
+  observe "PI (eingefroren): " + PI;
+  // PI = 3.0;  // Würde einen Fehler verursachen!
+
+  // Whisper - Ausgabe ohne Zeilenumbruch
+  whisper "Dies ist eine ";
+  whisper "zusammenhängende ";
+  whisper "Nachricht";
+  observe "";  // Zeilenumbruch
+
+  // Oscillate - Toggle-Funktion
+  induce isActive: boolean = false;
+  observe "isActive vor oscillate: " + isActive;
+  oscillate isActive;
+  observe "isActive nach 1x oscillate: " + isActive;
+  oscillate isActive;
+  observe "isActive nach 2x oscillate: " + isActive;
+
+  // Anchor - Zustand speichern und wiederherstellen
+  induce counter: number = 42;
+  anchor savedCounter = counter;
+  observe "Original counter: " + counter;
+  
+  counter = 100;
+  observe "Geänderter counter: " + counter;
+  
+  counter = savedCounter;
+  observe "Wiederhergestellter counter: " + counter;
+
+  // DeepFocus-Blöcke und deeperStill
+  observe "";
+  observe "=== DeepFocus Blöcke ===";
+  
+  if (x lookAtTheWatch 5) deepFocus {
+      observe "In tiefem Fokus...";
+      
+      if (y lookAtTheWatch 8) deeperStill {
+          observe "Noch tiefer im Fokus!";
+      }
+  }
+
+  // Implant - Alternative Variablendeklaration
+  implant secretValue: number = 999;
+  observe "Implantierter Wert: " + secretValue;
+
+  // Command - Imperative Ausgabe
+  command "AUFWACHEN!";
+
+  finale {
+      observe "";
+      observe "=== Demo abgeschlossen ===";
+      observe "Du erwachst aus der Trance...";
+  }
+
+} Relax

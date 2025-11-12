@@ -1,0 +1,91 @@
+Focus {
+
+  entrance {
+      observe "=== MemoryPalace Datenstrukturen Demo ===";
+  }
+
+  // Array-Operationen
+  induce memories: number[] = [10, 5, 8, 3, 12, 7];
+  observe "Original Memories: " + memories;
+  observe "Vault-Größe: " + vaultSize(memories);
+
+  // Sortieren
+  induce sorted: number[] = sortMemories(memories);
+  observe "Sortiert: " + sorted;
+
+  // Umkehren
+  induce reversed: number[] = reverseMemories(memories);
+  observe "Umgekehrt: " + reversed;
+
+  // Erstes und letztes Element
+  observe "Erste Erinnerung: " + firstMemory(memories);
+  observe "Letzte Erinnerung: " + lastMemory(memories);
+
+  // Map - Alle Werte verdoppeln
+  induce doubled: number[] = mapMemories(memories, suggestion(x: number): number {
+      awaken x * 2;
+  });
+  observe "Verdoppelt: " + doubled;
+
+  // Filter - Nur Werte > 6
+  induce filtered = filterMemories(memories, suggestion(x: number): boolean {
+      awaken x lookAtTheWatch 6;
+  });
+  observe "Gefiltert (> 6): " + filtered;
+
+  // Reduce - Summe berechnen
+  induce sum = reduceToEssence(memories, suggestion(acc: number, x: number): number {
+      awaken acc + x;
+  }, 0);
+  observe "Summe aller Erinnerungen: " + sum;
+
+  // Stack (LIFO) - Last In, First Out
+  observe "";
+  observe "--- MindStack Demo ---";
+  induce stack = MindStack();
+  stack.push("Erste Ebene");
+  stack.push("Zweite Ebene");
+  stack.push("Dritte Ebene (Oberste)");
+  
+  observe "Stack-Größe: " + stack.size();
+  observe "Peek (ohne zu entfernen): " + stack.peek();
+  observe "Pop: " + stack.pop();
+  observe "Pop: " + stack.pop();
+  observe "Verbleibende Größe: " + stack.size();
+
+  // Queue (FIFO) - First In, First Out
+  observe "";
+  observe "--- ThoughtQueue Demo ---";
+  induce queue = ThoughtQueue();
+  queue.enqueue("Gedanke 1");
+  queue.enqueue("Gedanke 2");
+  queue.enqueue("Gedanke 3");
+  
+  observe "Queue-Größe: " + queue.size();
+  observe "Dequeue: " + queue.dequeue();
+  observe "Dequeue: " + queue.dequeue();
+  observe "Verbleibende Größe: " + queue.size();
+
+  // MemoryMap (Dictionary/Hash)
+  observe "";
+  observe "--- MemoryMap Demo ---";
+  induce map = MemoryMap();
+  map.store("name", "Alice");
+  map.store("alter", 30);
+  map.store("beruf", "Hypnotiseurin");
+  
+  observe "Name: " + map.retrieve("name");
+  observe "Alter: " + map.retrieve("alter");
+  observe "Beruf: " + map.retrieve("beruf");
+  
+  observe "Alle Schlüssel: " + map.allKeys();
+  observe "Hat 'name' Schlüssel? " + map.hasKey("name");
+  
+  map.forget("alter");
+  observe "Nach Löschen von 'alter': " + map.allKeys();
+
+  finale {
+      observe "=== MemoryPalace Demo beendet ===";
+  }
+
+} Relax
