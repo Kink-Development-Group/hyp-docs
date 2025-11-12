@@ -362,7 +362,7 @@ Wo andere Sprachen nüchtern vergleichen, flüstert HypnoScript beschwörende Fo
 | `>=`                        | `yourEyesAreGettingHeavy` | Größer oder gleich  |
 | `<=`                        | `goingDeeper`             | Kleiner oder gleich |
 | `&&`                        | `underMyControl`          | Logisches UND       |
-| `<code>&#124;&#124;</code>` | `resistanceIsFutile`      | Logisches ODER      |
+| `\|\|` | `resistanceIsFutile`      | Logisches ODER      |
 
 ##### Moderne Traum-Semantik
 
