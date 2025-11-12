@@ -37,7 +37,7 @@
       - [3.5.5 Muster-Entraining: `entrain`](#355-muster-entraining-entrain)
       - [3.5.6 Asynchrone Trance: `mesmerize` \& `await`](#356-asynchrone-trance-mesmerize--await)
       - [3.5.7 Module \& gemeinsame Trancen](#357-module--gemeinsame-trancen)
-      - [3.5.8 Hypnotische Werkzeuge (Best-of)](#358-hypnotische-werkzeuge-best-of)
+      - [3.5.9 Hypnotische Werkzeuge (Best-of)](#359-hypnotische-werkzeuge-best-of)
   - [**4. Grammatik (EBNF)**](#4-grammatik-ebnf)
   - [**5. Semantik**](#5-semantik)
     - [5.1 Variablen und Scope](#51-variablen-und-scope)
@@ -491,7 +491,130 @@ imperative suggestion incrementVisitors() {
 - `sharedTrance` deklariert modulweite Zustände (ggf. mit `freeze`).
 - `manifest` (optional) kann verwendet werden, um Assets zu exportieren (Implementierungsdetail des Toolings).
 
-#### 3.5.8 Hypnotische Werkzeuge (Best-of)
+`trigger` ist ein mächtiges Werkzeug zum Definieren von Event-Hooks, Callbacks und verzögerten Aktionen. Ein Trigger bindet eine Funktions-Expression an einen Bezeichner und kann später explizit aufgerufen oder als Reaktion auf bestimmte Ereignisse ausgelöst werden.
+
+**Syntax:**
+
+```plaintext
+trigger triggerName = suggestion(parameterList) {
+    // Trigger-Code
+};
+```
+
+**Eigenschaften:**
+
+- **Deklarativ**: Triggers werden wie Variablen deklariert, binden aber Funktionslogik
+- **First-Class**: Können als Parameter übergeben, in Datenstrukturen gespeichert und dynamisch aufgerufen werden
+- **Event-Orientiert**: Ideal für Event-Handler, Callbacks, Cleanup-Aktionen und verzögerte Ausführungen
+- **Kombination mit Bibliotheken**: Perfekt mit `repeatAction`, `delayedSuggestion`, `awakenAfter` aus DeepMind/AuraAsync
+
+**Verwendungsmuster:**
+
+1. **Cleanup-Trigger**: Aufräumaktionen nach Programmende (oft in `finale`-Blöcken)
+2. **Event-Handler**: Reaktion auf Benutzer-Interaktionen oder Systemereignisse
+3. **Callback-Funktionen**: Als Parameter für höhere Funktionen (DeepMind, MemoryPalace)
+4. **State-Management**: Zustandsänderungs-Handler in komplexen Sessions
+
+**Beispiel 1: Cleanup-Trigger**
+
+```plaintext
+Focus {
+    induce resourceHandle: number = 42;
+
+    trigger onCleanup = suggestion() {
+        command "Ressourcen werden freigegeben...";
+        resourceHandle = 0;
+        observe "Cleanup abgeschlossen.";
+    };
+
+    // Programm-Logik...
+    observe "Hauptprogramm läuft...";
+
+    finale {
+        onCleanup();  // Expliziter Aufruf des Triggers
+    }
+} Relax
+```
+
+**Beispiel 2: Event-Handler für Wiederholungen**
+
+```plaintext
+Focus {
+    induce counter: number = 0;
+
+    trigger onTick = suggestion() {
+        counter = counter + 1;
+        observe "Tick " + counter;
+    };
+
+    // Verwende Trigger mit DeepMind
+    repeatAction(5, onTick);
+
+    observe "Finale Zählung: " + counter;
+} Relax
+```
+
+**Beispiel 3: Parametrisierte Trigger**
+
+```plaintext
+Focus {
+    trigger onError = suggestion(errorCode: number, message: string) {
+        command "⚠️ FEHLER " + errorCode + ": " + message;
+        drift(1000);
+    };
+
+    induce x: number = 10;
+    if (x lookAtTheWatch 100) {
+        onError(404, "Wert zu groß!");
+    }
+} Relax
+```
+
+**Beispiel 4: Trigger in Sessions**
+
+```plaintext
+session HypnoTimer {
+    expose elapsedSeconds: number;
+    conceal tickTrigger: trigger;
+
+    suggestion constructor() {
+        this.elapsedSeconds = 0;
+        this.tickTrigger = trigger onSecondElapsed = suggestion() {
+            this.elapsedSeconds = this.elapsedSeconds + 1;
+            observe "Verstrichene Zeit: " + this.elapsedSeconds + "s";
+        };
+    }
+
+    suggestion start() {
+        repeatAction(10, this.tickTrigger);
+    }
+}
+
+Focus {
+    induce timer = HypnoTimer();
+    timer.start();
+} Relax
+```
+
+**Unterschied zu normalen Funktionen:**
+
+| Aspekt      | `suggestion`                            | `trigger`                                   |
+| ----------- | --------------------------------------- | ------------------------------------------- |
+| Deklaration | `suggestion name(params): type { ... }` | `trigger name = suggestion(params) { ... }` |
+| Semantik    | Wiederverwendbare Funktion              | Event-Handler/Callback                      |
+| Verwendung  | Allgemeine Logik                        | Ereignisgesteuert                           |
+| Konvention  | Algorithmen, Berechnungen               | Reaktionen, Cleanup, Events                 |
+
+**Best Practices:**
+
+- Verwende `trigger` für Event-Handler und Callbacks
+- Benenne Triggers mit Präfix `on` für Klarheit (`onAwaken`, `onError`, `onComplete`)
+- Kombiniere mit `finale`-Blöcken für garantierte Ausführung
+- Nutze Triggers in Kombination mit DeepMind-Funktionen für elegante Kontrollflüsse
+
+> Hinweis: Trigger sind syntaktischer Zucker für Funktions-Expressions mit event-orientierter Semantik. Intern werden sie als First-Class Functions behandelt.
+
+#### 3.5.9 Hypnotische Werkzeuge (Best-of)
 
 Eine Auswahl weiterer Sprachjuwelen, die den Hypnose-Charakter abrunden:
 
@@ -503,9 +626,10 @@ Eine Auswahl weiterer Sprachjuwelen, die den Hypnose-Charakter abrunden:
 - `whisper`, `command`, `murmur`: Ausgabestufen vom Flüstern bis zur Autorität.
 - `implant`/`embed`: Alternativen zu `induce` für tiefere Speicheroperationen.
 - `subconscious`: Zugriff auf verborgene Speicherbereiche.
-- `trigger`: Event-Hooks (z. B. für `repeatAction`).
 - `sinkTo label;`: Goto-artiger Sprung für dramatische Effekte – möglichst sparsam einsetzen.
 - `finale { ... }`: Aufräum- und Abschlussblock nach dem Hauptprogramm.
+
+> Siehe auch [3.5.8 Trigger](#358-trigger-event-hooks--callback-mechanismen) für vollständige Event-Hook-Dokumentation.
 
 ```plaintext
 sharedTrance freeze mantraText: string = "Atme ein, atme aus";
