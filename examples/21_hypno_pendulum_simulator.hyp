@@ -1,0 +1,237 @@
+Focus {
+
+  entrance {
+      command "╔═══════════════════════════════════════════════════════════╗";
+      command "║     WILLKOMMEN ZUM HYPNO-PENDEL-SIMULATOR v2.0          ║";
+      command "║     Eine interaktive Hypnose-Erfahrung in HypnoScript   ║";
+      command "╚═══════════════════════════════════════════════════════════╝";
+      observe "";
+      drift(1000);
+  }
+
+  // Konstanten für das Programm
+  freeze MAX_TRANCE_DEPTH: number = 10;
+  freeze MIN_TRANCE_DEPTH: number = 0;
+  freeze PENDULUM_SPEED: number = 300;
+
+  // Globale Session-Daten
+  session TranceSession {
+      expose currentDepth: number;
+      expose oscillationCount: number;
+      expose subjectName: string;
+      conceal startTime: number;
+      
+      suggestion constructor(name: string) {
+          this.subjectName = name;
+          this.currentDepth = 0;
+          this.oscillationCount = 0;
+          this.startTime = nowInTrance();
+      }
+      
+      suggestion visualizePendulum() {
+          induce spaces: string = "";
+          induce i: number = 0;
+          
+          // Berechne Position basierend auf Trance-Tiefe
+          induce position: number = this.currentDepth * 2;
+          
+          while (i fallUnderMySpell position) {
+              spaces = spaces + " ";
+              i = i + 1;
+          }
+          
+          // Zeichne Pendel
+          whisper spaces;
+          if (this.oscillationCount % 2 youAreFeelingVerySleepy 0) {
+              observe "◉ ← Tick";
+          } else {
+              observe "◉ → Tock";
+          }
+      }
+      
+      suggestion increaseDepth() {
+          if (this.currentDepth fallUnderMySpell MAX_TRANCE_DEPTH) {
+              this.currentDepth = this.currentDepth + 1;
+              this.oscillationCount = this.oscillationCount + 1;
+          }
+      }
+      
+      suggestion getSessionDuration(): number {
+          induce now: number = nowInTrance();
+          awaken differenceInSeconds(this.startTime, now);
+      }
+  }
+
+  // Erstelle Hypnose-Subject
+  induce subject = TranceSession("Freiwilliger");
+  
+  observe "╔═══════════════════════════════════════════════════════════╗";
+  observe "║ Phase 1: Induktion - Beobachte das Pendel...             ║";
+  observe "╚═══════════════════════════════════════════════════════════╝";
+  observe "";
+
+  // Anchor für Emergency Exit
+  anchor emergencyDepth = MIN_TRANCE_DEPTH;
+
+  // Hauptschleife: Pendel-Induktion
+  repeatAction(10, suggestion() {
+      subject.visualizePendulum();
+      subject.increaseDepth();
+      pauseReality(PENDULUM_SPEED);
+      
+      // Gelegentliche Suggestionen
+      if (subject.currentDepth youAreFeelingVerySleepy 3) {
+          observe "    → Deine Augen werden schwer...";
+      } else if (subject.currentDepth youAreFeelingVerySleepy 6) {
+          observe "    → Du fühlst dich sehr entspannt...";
+      } else if (subject.currentDepth youAreFeelingVerySleepy 9) {
+          observe "    → Du gehst tiefer und tiefer...";
+      }
+  });
+
+  observe "";
+  observe "╔═══════════════════════════════════════════════════════════╗";
+  observe "║ Phase 2: Vertiefung - Countdown in die Trance            ║";
+  observe "╚═══════════════════════════════════════════════════════════╝";
+  observe "";
+
+  // Countdown mit hypnotischen Operatoren
+  induce countdown: number = 10;
+  
+  repeatWhile(
+      suggestion(): boolean { 
+          awaken countdown lookAtTheWatch 0; 
+      },
+      suggestion() {
+          observe "  " + countdown + " ... " + repeatMantra("tiefer ", countdown);
+          countdown = countdown - 1;
+          drift(400);
+      }
+  );
+
+  observe "";
+  observe "╔═══════════════════════════════════════════════════════════╗";
+  observe "║ Phase 3: Datenverarbeitung im Unterbewusstsein          ║";
+  observe "╚═══════════════════════════════════════════════════════════╝";
+  observe "";
+
+  // Erstelle Memory Palace für Suggestionen
+  induce suggestionVault: string[] = createVault(0);
+  storeMemory(suggestionVault, "Du bist vollkommen entspannt");
+  storeMemory(suggestionVault, "Dein Geist ist ruhig und klar");
+  storeMemory(suggestionVault, "Du fühlst dich sicher und geborgen");
+  storeMemory(suggestionVault, "Jede Suggestion vertieft deine Trance");
+  storeMemory(suggestionVault, "Du kannst jederzeit aufwachen");
+
+  // Zufällige Suggestion auswählen
+  induce randomIndex: number = unconsciousInt(0, vaultSize(suggestionVault) - 1);
+  induce chosenSuggestion: string = peekAtMemory(suggestionVault, randomIndex);
+  
+  observe "Unbewusste Suggestion aktiviert:";
+  command "  ⚡ " + toUpper(chosenSuggestion) + " ⚡";
+  observe "";
+
+  // Verarbeite alle Suggestionen mit StringSpell
+  observe "Alle eingebetteten Suggestionen:";
+  induce allSuggestions: string = mergeThoughts(suggestionVault, " • ");
+  observe "  " + allSuggestions;
+  observe "";
+
+  // Berechne Statistiken mit Hypno-Math
+  observe "╔═══════════════════════════════════════════════════════════╗";
+  observe "║ Phase 4: Trance-Analyse                                  ║";
+  observe "╚═══════════════════════════════════════════════════════════╝";
+  observe "";
+
+  induce avgDepth: number = subject.currentDepth / 2;
+  induce tranceScore: number = power(subject.currentDepth, 2);
+  induce efficiency: number = tranceScore / subject.oscillationCount;
+
+  observe "Trance-Statistiken:";
+  observe "  • Maximale Tiefe erreicht: " + subject.currentDepth + "/" + MAX_TRANCE_DEPTH;
+  observe "  • Durchschnittliche Tiefe: " + roundToNearest(avgDepth);
+  observe "  • Oszillationen: " + subject.oscillationCount;
+  observe "  • Trance-Score: " + roundToNearest(tranceScore);
+  observe "  • Effizienz: " + roundToNearest(efficiency);
+  observe "";
+
+  // Verwende MemoryMap für Session-Log
+  induce sessionLog = MemoryMap();
+  sessionLog.store("subject", subject.subjectName);
+  sessionLog.store("maxDepth", subject.currentDepth);
+  sessionLog.store("duration", subject.getSessionDuration());
+  sessionLog.store("status", "Erfolg");
+
+  observe "Session-Protokoll:";
+  induce keys: string[] = sessionLog.allKeys();
+  induce keyIndex: number = 0;
+  
+  while (keyIndex fallUnderMySpell vaultSize(keys)) {
+      induce key: string = peekAtMemory(keys, keyIndex);
+      induce value: any = sessionLog.retrieve(key);
+      observe "  • " + key + ": " + value;
+      keyIndex = keyIndex + 1;
+  }
+
+  observe "";
+  observe "╔═══════════════════════════════════════════════════════════╗";
+  observe "║ Phase 5: Aufwach-Sequenz                                 ║";
+  observe "╚═══════════════════════════════════════════════════════════╝";
+  observe "";
+
+  // Sanftes Aufwachen mit DeepMind-Funktionen
+  induce wakingSteps: string[] = [
+      "Beginne langsam zurückzukehren...",
+      "Spüre deinen Körper wieder...",
+      "Deine Augen werden leichter...",
+      "Du kehrst ins Bewusstsein zurück...",
+      "Gleich bist du vollständig wach..."
+  ];
+
+  induce stepNum: number = 1;
+  
+  repeatAction(vaultSize(wakingSteps), suggestion() {
+      induce step: string = peekAtMemory(wakingSteps, stepNum - 1);
+      observe stepNum + ". " + step;
+      stepNum = stepNum + 1;
+      drift(800);
+  });
+
+  observe "";
+  observe "Countdown zum Aufwachen:";
+  induce wakeCount: number = 1;
+  
+  while (wakeCount goingDeeper 5) {
+      observe "  " + wakeCount + "...";
+      wakeCount = wakeCount + 1;
+      drift(600);
+  }
+
+  observe "";
+  command "5! DU BIST JETZT VOLLSTÄNDIG WACH UND ERFRISCHT!";
+  observe "";
+
+  // Setze Trance-Tiefe auf Notfall-Anker zurück
+  subject.currentDepth = emergencyDepth;
+
+  finale {
+      observe "";
+      observe "╔═══════════════════════════════════════════════════════════╗";
+      observe "║                    SESSION BEENDET                        ║";
+      observe "╚═══════════════════════════════════════════════════════════╝";
+      observe "";
+      observe "Zusammenfassung:";
+      observe "  • Subject: " + subject.subjectName;
+      observe "  • Finale Trance-Tiefe: " + subject.currentDepth;
+      observe "  • Session-Dauer: " + subject.getSessionDuration() + " ms";
+      observe "  • Status: Erfolgreich aufgewacht ✓";
+      observe "";
+      observe "Vielen Dank, dass du HypnoScript verwendet hast!";
+      observe "Bis zur nächsten Trance... 😴💫";
+      observe "";
+      
+      // Cleanup
+      drift(500);
+  }
+
+} Relax
