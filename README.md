@@ -55,6 +55,8 @@ Die Sprache bietet auch **hypnotische Operator-Synonyme** wie:
 - `youAreFeelingVerySleepy` für `==`
 - `lookAtTheWatch` für `>`
 - `fallUnderMySpell` für `<`
+- `yourEyesAreGettingHeavy` für `>=`
+- `goingDeeper` für `<=`
 - `youCannotResist` für `!=`
 - `underMyControl` für `&&`
 - `resistanceIsFutile` für `||`

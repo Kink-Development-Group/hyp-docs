@@ -356,19 +356,15 @@ observe r.name;
 - **`command`**: Imperativ-Form von `observe` für direktive Ausgaben.
 - **`implant`**: Alternative zu `induce` für tiefer eingebettete Variablen.
 - **`embed`**: Fügt einen Wert in den Subconscious-Speicher ein.
-- **`subconscious`**: Zugriff auf versteckte/globale Speicherbereiche.
-- **`deepenTrance`**: Erhöht die Trance-Tiefe (könnte Debugging-Level beeinflussen).
-- **`emergeFromTrance`**: Verringert die Trance-Tiefe oder beendet bestimmte Modi.
+- **`subconscious`**: Zugriff auf versteckte/globale Speicherbereiche. *(Reserviert für zukünftige Implementierung)*
+- **`deepenTrance`**: Erhöht die Trance-Tiefe (könnte Debugging-Level beeinflussen). *(Reserviert für zukünftige Implementierung)*
+- **`emergeFromTrance`**: Verringert die Trance-Tiefe oder beendet bestimmte Modi. *(Reserviert für zukünftige Implementierung)*
+- **`trigger`**: Definiert einen Event-Handler oder Callback. *(Reserviert für zukünftige Implementierung)*
 - **`finale`**: Optionaler Abschlussblock (wird nach `Relax` oder am Programmende ausgeführt).
 
 **Beispiele:**
 
 ```plaintext
-// Trigger-Definition
-trigger onValueChange(newValue: number) {
-    observe "Wert hat sich geändert zu: " + newValue;
-}
-
 // Anchor-Verwendung
 induce x: number = 42;
 anchor savedX = x;
@@ -480,7 +476,7 @@ WhisperStatement
 CommandStatement
                   ::= "command" Expression ";" ;
 
-DriftStatement  ::= ("drift" | "suspend") "(" Expression ")" ";" ;
+DriftStatement  ::= ("drift" | "suspend" | "pauseReality") "(" Expression ")" ";" ;
 
 AnchorStatement ::= "anchor" Identifier "=" Expression ";" ;
 
@@ -882,8 +878,11 @@ suggestion formatTimeMoment(timestamp: number, format: string): string  // Times
 suggestion addDays(timestamp: number, days: number): number
 suggestion addHours(timestamp: number, hours: number): number
 suggestion addMinutes(timestamp: number, minutes: number): number
+suggestion addSeconds(timestamp: number, seconds: number): number
 suggestion differenceInDays(ts1: number, ts2: number): number
 suggestion differenceInHours(ts1: number, ts2: number): number
+suggestion differenceInMinutes(ts1: number, ts2: number): number
+suggestion differenceInSeconds(ts1: number, ts2: number): number
 
 // Datum-Komponenten
 suggestion extractYear(timestamp: number): number

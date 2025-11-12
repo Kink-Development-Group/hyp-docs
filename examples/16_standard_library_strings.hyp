@@ -16,7 +16,7 @@ Focus {
   // String zerlegen und zusammenfügen
   induce words: string[] = fragmentMemory(cleaned, " ");
   observe "Wörter: " + words;
-  observe "Anzahl Wörter: " + measureDepth(words);
+  observe "Anzahl Wörter: " + vaultSize(words);
   
   induce rejoined: string = mergeThoughts(words, "-");
   observe "Zusammengefügt mit '-': " + rejoined;
