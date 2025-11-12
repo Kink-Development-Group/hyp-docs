@@ -530,6 +530,7 @@ Focus {
 
     // Nostalgischer Sprung, bitte nur im Ausnahmefall:
     myLabel:
+    baselineDepth = baselineDepth - 1;
     if (baselineDepth fallUnderMySpell 1) sinkTo myLabel;
 
     finale {
