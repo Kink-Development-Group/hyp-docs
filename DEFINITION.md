@@ -735,7 +735,8 @@ ObserveStatement ::= "observe" Expression ";" ;
 WhisperStatement ::= "whisper" Expression ";" ;
 CommandStatement ::= "command" Expression ";" ;
 
-DriftStatement   ::= ("drift" | "suspend" | "pauseReality") "(" Expression ")" ";" ;
+DriftStatement   ::= ("drift" | "pauseReality") "(" Expression ")" ";" 
+                   | "suspend" ";" ;
 
 AnchorStatement  ::= "anchor" Identifier "=" Expression ";" ;
 OscillateStatement ::= "oscillate" Identifier ";" ;
