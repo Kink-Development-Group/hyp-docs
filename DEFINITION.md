@@ -480,7 +480,7 @@ WhisperStatement
 CommandStatement
                   ::= "command" Expression ";" ;
 
-DriftStatement  ::= ("drift" | "suspend" | "freeze") "(" Expression ")" ";" ;
+DriftStatement  ::= ("drift" | "suspend") "(" Expression ")" ";" ;
 
 AnchorStatement ::= "anchor" Identifier "=" Expression ";" ;
 
