@@ -516,7 +516,7 @@ Focus {
 
     oscillate isDeepening;
     if (isDeepening) {
-        deepenTrance(baselineDepth);
+        observe "Trance wird vertieft auf Level: " + baselineDepth;
     }
 
     pendulum (induce i: number = 0; i fallUnderMySpell 3) {
