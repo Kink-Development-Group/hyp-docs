@@ -30,6 +30,16 @@
 
 **HypnoScript** ist eine minimalistische, esoterische Sprache, die sich an die Syntax von TypeScript/JavaScript anlehnt und dabei alle möglichen Klischees rund um Hypnose, Trance und hypnotische Induktion verwendet. Trotz des humorvollen Charakters ist sie auf Turing-Vollständigkeit ausgelegt und unterstützt Variablen, Schleifen, bedingte Anweisungen, Funktionen, Objektorientierung (als _Session-Konzept_) und diverse Sprach-Gimmicks im hypnotischen Stil.
 
+Die Sprache verfügt über eine **umfassende Standardbibliothek** mit hypnotisch benannten Funktionen für:
+- Mathematische Operationen (Hypno-Math)
+- String-Manipulation (StringSpell)
+- Datenstrukturen (MemoryPalace)
+- Zeit- und Datumsfunktionen (TimeWarp)
+- Erweiterte Kontrollstrukturen (DeepMind)
+- Ein-/Ausgabe-Funktionen (SensoryInput)
+
+Für die vollständige Sprachdefinition siehe [DEFINITION.md](DEFINITION.md).
+
 ## Grundaufbau
 
 ### Lexikalische Struktur
@@ -39,7 +49,15 @@
 
 ### Schlüsselwörter
 
-Beispiele für Schlüsselwörter sind `Focus`, `Relax`, `if`, `else`, `while`, `loop`, `suggestion`, `awaken`, `induce`, `observe`, `trance`, `session`, `constructor`, `drift`, `tranceify`, etc.
+Beispiele für Schlüsselwörter sind `Focus`, `Relax`, `if`, `else`, `while`, `loop`, `suggestion`, `awaken`, `induce`, `observe`, `trance`, `session`, `constructor`, `drift`, `tranceify`, `trigger`, `anchor`, `oscillate`, `pendulum`, `whisper`, `command`, `freeze`, `finale`, etc.
+
+Die Sprache bietet auch **hypnotische Operator-Synonyme** wie:
+- `youAreFeelingVerySleepy` für `==`
+- `lookAtTheWatch` für `>`
+- `fallUnderMySpell` für `<`
+- `youCannotResist` für `!=`
+- `underMyControl` für `&&`
+- `resistanceIsFutile` für `||`
 
 ### Operatoren und Sonderzeichen
 

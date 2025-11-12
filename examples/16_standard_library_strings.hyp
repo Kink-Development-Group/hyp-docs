@@ -1,0 +1,60 @@
+Focus {
+
+  entrance {
+      observe "=== StringSpell Bibliothek Demo ===";
+  }
+
+  // String-Manipulation
+  induce message: string = "  Willkommen in der Trance  ";
+  induce cleaned: string = trimEdges(message);
+  observe "Original: '" + message + "'";
+  observe "Bereinigt: '" + cleaned + "'";
+
+  // Länge messen
+  observe "Tiefe der Nachricht: " + measureDepth(cleaned);
+
+  // String zerlegen und zusammenfügen
+  induce words: string[] = fragmentMemory(cleaned, " ");
+  observe "Wörter: " + words;
+  observe "Anzahl Wörter: " + measureDepth(words);
+  
+  induce rejoined: string = mergeThoughts(words, "-");
+  observe "Zusammengefügt mit '-': " + rejoined;
+
+  // String-Transformation
+  induce loud: string = toUpper(cleaned);
+  induce quiet: string = toLower(cleaned);
+  observe "LAUT (Befehl): " + loud;
+  observe "leise (flüstern): " + quiet;
+
+  // String umkehren
+  induce reversed: string = reverseTrance("Hypnose");
+  observe "Umgekehrt: " + reversed;
+
+  // Mantra wiederholen
+  induce mantra: string = repeatMantra("Om ", 5);
+  observe "Mantra: " + mantra;
+
+  // Muster suchen und ersetzen
+  induce text: string = "Du bist in Trance, tiefer Trance";
+  if (containsPattern(text, "Trance")) {
+      observe "Das Wort 'Trance' wurde gefunden!";
+  }
+  
+  induce replaced: string = replaceAllMemories(text, "Trance", "Entspannung");
+  observe "Ersetzt: " + replaced;
+
+  // String-Prüfungen
+  if (startsWithSuggestion(text, "Du bist")) {
+      observe "Der Text beginnt mit 'Du bist'";
+  }
+
+  if (endsWithAwakening(text, "Trance")) {
+      observe "Der Text endet mit 'Trance'";
+  }
+
+  finale {
+      observe "=== StringSpell Demo beendet ===";
+  }
+
+} Relax

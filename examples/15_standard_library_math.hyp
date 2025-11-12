@@ -1,0 +1,45 @@
+Focus {
+
+  entrance {
+      observe "=== Hypno-Math Bibliothek Demo ===";
+  }
+
+  // Grundlegende mathematische Operationen
+  induce radius: number = 5.0;
+  induce area: number = hypnoticPi() * power(radius, 2);
+  observe "Kreisfläche mit Radius " + radius + ": " + area;
+
+  // Trigonometrische Funktionen (Pendel-Bewegungen)
+  induce angle: number = 45.0;
+  induce sine: number = pendulumSin(angle);
+  induce cosine: number = pendulumCos(angle);
+  observe "Sinus von " + angle + " Grad: " + sine;
+  observe "Cosinus von " + angle + " Grad: " + cosine;
+
+  // Rundungsfunktionen
+  induce floatNum: number = 3.7;
+  observe "floor(" + floatNum + ") = " + floor(floatNum);
+  observe "ceiling(" + floatNum + ") = " + ceiling(floatNum);
+  observe "roundToNearest(" + floatNum + ") = " + roundToNearest(floatNum);
+
+  // Min/Max (Dominant/Submissive)
+  induce a: number = 42;
+  induce b: number = 17;
+  observe "Dominant (max) von " + a + " und " + b + ": " + selectDominant(a, b);
+  observe "Submissive (min) von " + a + " und " + b + ": " + selectSubmissive(a, b);
+
+  // Zufallszahlen (Unbewusste Entscheidungen)
+  observe "Unbewusste Zufallszahl zwischen 1 und 100: " + unconsciousInt(1, 100);
+  observe "Unbewusste boolean Entscheidung: " + unconsciousBool();
+
+  // Potenz und Wurzel
+  induce base: number = 2;
+  induce exponent: number = 10;
+  observe base + " hoch " + exponent + " = " + power(base, exponent);
+  observe "Quadratwurzel von 16: " + squareRoot(16);
+
+  finale {
+      observe "=== Demo beendet ===";
+  }
+
+} Relax

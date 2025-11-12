@@ -33,11 +33,19 @@
     - [5.1 Variablen und Scope](#51-variablen-und-scope)
     - [5.2 Ein- / Ausgabe](#52-ein---ausgabe)
     - [5.3 Turing-Vollständigkeit](#53-turing-vollständigkeit)
-  - [**6. Beispielprogramme**](#6-beispielprogramme)
-    - [6.1 Einfaches „Hello Trance!“](#61-einfaches-hello-trance)
-    - [6.2 Summierung mit Input](#62-summierung-mit-input)
-    - [6.3 Verwendung erweiterter Konzepte](#63-verwendung-erweiterter-konzepte)
-      - [6.3.1 `session`, `drift`, Operator-Synonyme](#631-session-drift-operator-synonyme)
+  - [**6. Standardbibliothek**](#6-standardbibliothek)
+    - [6.1 Tranceify-Bibliothek (Kernfunktionen)](#61-tranceify-bibliothek-kernfunktionen)
+    - [6.2 Hypno-Math (Mathematische Funktionen)](#62-hypno-math-mathematische-funktionen)
+    - [6.3 StringSpell (String-Manipulation)](#63-stringspell-string-manipulation)
+    - [6.4 MemoryPalace (Datenstrukturen)](#64-memorypalace-datenstrukturen)
+    - [6.5 TimeWarp (Zeit- und Datumsfunktionen)](#65-timewarp-zeit--und-datumsfunktionen)
+    - [6.6 DeepMind (Erweiterte Kontrollstrukturen)](#66-deepmind-erweiterte-kontrollstrukturen)
+    - [6.7 SensoryInput (Ein-/Ausgabe-Funktionen)](#67-sensoryinput-ein-ausgabe-funktionen)
+  - [**7. Beispielprogramme**](#7-beispielprogramme)
+    - [7.1 Einfaches „Hello Trance!"](#71-einfaches-hello-trance)
+    - [7.2 Summierung mit Input](#72-summierung-mit-input)
+    - [7.3 Verwendung erweiterter Konzepte](#73-verwendung-erweiterter-konzepte)
+      - [7.3.1 `session`, `drift`, Operator-Synonyme](#731-session-drift-operator-synonyme)
 
 ---
 
@@ -65,21 +73,25 @@ if, else,
 while, loop,
 snap, sink,
 suggestion, awaken, call,
-entrance,
-deepFocus,
-induce,
-observe,
-trance,
+entrance, finale,
+deepFocus, deeperStill,
+induce, implant, embed,
+observe, whisper, command,
+trance, subconscious,
 from, external,
 number, string, boolean,
 true, false,
 session, constructor,
 expose, conceal, dominant,
-drift,
-youAreFeelingVerySleepy, lookAtTheWatch, fallUnderMySpell, 
+drift, suspend, freeze,
+youAreFeelingVerySleepy, lookAtTheWatch, fallUnderMySpell,
+youCannotResist, yourEyesAreGettingHeavy, goingDeeper,
 tranceify,
 mindLink, sharedTrance,
-imperative
+imperative, trigger, anchor,
+oscillate, pendulum,
+deepenTrance, emergeFromTrance,
+underMyControl, resistanceIsFutile
 ```
 
 _(Die zusätzlichen hypnotischen Begriffe siehe Kapitel „Erweiterte Konzepte“.)_
@@ -269,8 +281,43 @@ Neben den üblichen `==`, `>`, `<` usw. können folgende Synonyme verwendet werd
 
 - **`lookAtTheWatch`** statt `>`  
 - **`fallUnderMySpell`** statt `<`  
+- **`youCannotResist`** statt `!=`
+- **`yourEyesAreGettingHeavy`** statt `>=`
+- **`goingDeeper`** statt `<=`
+- **`underMyControl`** statt `&&` (logisches UND)
+- **`resistanceIsFutile`** statt `||` (logisches ODER)
 
-_(Beliebige weitere Wortspiele für `!=`, `>=`, `<=` etc. sind denkbar.)_
+**Vollständige Liste der hypnotischen Operator-Synonyme:**
+
+| Standard-Operator | Hypnotisches Synonym | Bedeutung |
+|-------------------|---------------------|-----------|
+| `==` | `youAreFeelingVerySleepy` | Gleichheit |
+| `!=` | `youCannotResist` | Ungleichheit |
+| `>` | `lookAtTheWatch` | Größer als |
+| `<` | `fallUnderMySpell` | Kleiner als |
+| `>=` | `yourEyesAreGettingHeavy` | Größer oder gleich |
+| `<=` | `goingDeeper` | Kleiner oder gleich |
+| `&&` | `underMyControl` | Logisches UND |
+| `||` | `resistanceIsFutile` | Logisches ODER |
+
+**Beispiele:**
+
+```plaintext
+// Vergleiche mit hypnotischen Synonymen
+if (age lookAtTheWatch 18 underMyControl licensed youAreFeelingVerySleepy true) {
+    observe "Du darfst fahren!";
+}
+
+// Komplexe Bedingung
+if (x goingDeeper 100 resistanceIsFutile y yourEyesAreGettingHeavy 50) {
+    observe "Bedingung erfüllt!";
+}
+
+// Ungleichheit prüfen
+if (password youCannotResist "trance123") {
+    observe "Falsches Passwort!";
+}
+```
 
 #### 3.5.4 Benutzerdefinierte Strukturen/Typen: `tranceify`
 
@@ -299,6 +346,75 @@ observe r.name;
 - **`imperative suggestion`**: Eine Funktion ohne Rückgabewert (Prozedur).  
 - **`mindLink "myLibrary.hyp";`**: Zum Import weiterer Module/Dateien.  
 - **`sharedTrance`**: Globale Variablen-Definition.  
+- **`trigger`**: Definiert einen Event-Handler oder Callback.
+- **`anchor`**: Markiert einen Zustand oder Wert zur späteren Wiederherstellung.
+- **`oscillate`**: Wechselt zwischen zwei Zuständen (Toggle-Funktion).
+- **`pendulum`**: Führt eine oszillierende Schleife aus (hin und zurück).
+- **`suspend`**: Pausiert die Ausführung (ähnlich wie `drift`, aber unbestimmte Zeit).
+- **`freeze`**: Macht eine Variable unveränderlich (const).
+- **`whisper`**: Ausgabe ohne Zeilenumbruch.
+- **`command`**: Imperativ-Form von `observe` für direktive Ausgaben.
+- **`implant`**: Alternative zu `induce` für tiefer eingebettete Variablen.
+- **`embed`**: Fügt einen Wert in den Subconscious-Speicher ein.
+- **`subconscious`**: Zugriff auf versteckte/globale Speicherbereiche.
+- **`deepenTrance`**: Erhöht die Trance-Tiefe (könnte Debugging-Level beeinflussen).
+- **`emergeFromTrance`**: Verringert die Trance-Tiefe oder beendet bestimmte Modi.
+- **`finale`**: Optionaler Abschlussblock (wird nach `Relax` oder am Programmende ausgeführt).
+
+**Beispiele:**
+
+```plaintext
+// Trigger-Definition
+trigger onValueChange(newValue: number) {
+    observe "Wert hat sich geändert zu: " + newValue;
+}
+
+// Anchor-Verwendung
+induce x: number = 42;
+anchor savedX = x;
+x = 100;
+x = savedX;  // Wiederherstellung
+
+// Oscillate (Toggle)
+induce isActive: boolean = false;
+oscillate isActive;  // isActive wird zu true
+oscillate isActive;  // isActive wird wieder zu false
+
+// Pendulum-Schleife (hin und zurück von 0 bis 10)
+pendulum (induce i: number = 0; i fallUnderMySpell 10) {
+    observe i;
+}
+
+// Freeze-Konstante
+freeze PI: number = 3.14159;
+// PI = 3.0; // Fehler: Variable ist eingefroren
+
+// Whisper (ohne Zeilenumbruch)
+whisper "Bitte warten";
+drift(1000);
+whisper "...";
+drift(1000);
+observe "Fertig!";
+
+// Finale-Block
+Focus {
+    observe "Programmstart";
+    
+    entrance {
+        observe "Initialisierung...";
+    }
+    
+    // Hauptprogramm
+    induce result: number = 42;
+    observe "Ergebnis: " + result;
+    
+    finale {
+        observe "Aufräumen und Beenden...";
+        observe "Programm erfolgreich beendet.";
+    }
+} Relax
+```
+
 - **Sprünge** (Goto-ähnlich):  
 
   ```plaintext
@@ -480,9 +596,419 @@ Diese Faktoren reichen aus, um Turing-Vollständigkeit zu gewährleisten.
 
 ---
 
-## **6. Beispielprogramme**
+## **6. Standardbibliothek**
 
-### 6.1 Einfaches „Hello Trance!“
+Die HypnoScript-Standardbibliothek bietet eine umfassende Sammlung von hypnotisch benannten Funktionen und Modulen, die häufige Programmieraufgaben vereinfachen. Alle Bibliotheksfunktionen folgen dem hypnotischen Thema und verwenden suggestive Bezeichnungen.
+
+### 6.1 Tranceify-Bibliothek (Kernfunktionen)
+
+Die Kernbibliothek stellt grundlegende Funktionen für Typkonvertierung und Basisdatenmanipulation bereit.
+
+```plaintext
+// Typkonvertierungen
+suggestion toNumber(value: string): number
+suggestion toString(value: number): string
+suggestion toBoolean(value: any): boolean
+
+// Typ-Prüfungen
+suggestion isNumber(value: any): boolean
+suggestion isString(value: any): boolean
+suggestion isBoolean(value: any): boolean
+suggestion isTranced(value: any): boolean  // Prüft, ob Wert in "Trance" ist (null/undefined)
+
+// Grundlegende Utilities
+suggestion clone(obj: any): any  // Tiefe Kopie eines Objekts
+suggestion absorb(target: any, source: any): any  // Merge von Objekten (hypnotisches "merge")
+suggestion reflect(value: any): string  // Gibt Typ-Information zurück
+```
+
+**Beispiel:**
+
+```plaintext
+Focus {
+    induce numStr: string = "42";
+    induce num: number = toNumber(numStr);
+    observe "Konvertiert: " + num;
+    
+    if (isNumber(num)) {
+        observe "Es ist eine Zahl!";
+    }
+} Relax
+```
+
+### 6.2 Hypno-Math (Mathematische Funktionen)
+
+Das Hypno-Math-Modul bietet erweiterte mathematische Funktionen mit hypnotischen Namen.
+
+```plaintext
+// Grundlegende Operationen
+suggestion power(base: number, exponent: number): number  // Potenzierung
+suggestion squareRoot(n: number): number  // Quadratwurzel (visualisiere die Spirale...)
+suggestion absoluteDepth(n: number): number  // Absolutwert (Tiefe ist immer positiv)
+
+// Rundungsfunktionen
+suggestion ceiling(n: number): number  // Aufrunden (aufsteigen aus der Trance)
+suggestion floor(n: number): number  // Abrunden (sinken in die Trance)
+suggestion roundToNearest(n: number): number  // Runden zur nächsten Ganzzahl
+
+// Trigonometrische Funktionen (Pendel-Bewegungen)
+suggestion pendulumSin(angle: number): number  // sin
+suggestion pendulumCos(angle: number): number  // cos
+suggestion pendulumTan(angle: number): number  // tan
+
+// Erweiterte Funktionen
+suggestion spiralLog(n: number): number  // Logarithmus (Spirale nach innen)
+suggestion spiralExp(n: number): number  // Exponentialfunktion (Spirale nach außen)
+suggestion hypnoticPi(): number  // π (3.14159...)
+suggestion hypnoticE(): number   // e (2.71828...)
+
+// Min/Max (Dominant/Submissive Auswahl)
+suggestion selectDominant(a: number, b: number): number  // max
+suggestion selectSubmissive(a: number, b: number): number  // min
+suggestion clampBetween(value: number, min: number, max: number): number  // Begrenzt Wert
+
+// Zufallsfunktionen (Unbewusste Entscheidungen)
+suggestion unconsciousChoice(): number  // Zufallszahl zwischen 0 und 1
+suggestion unconsciousInt(min: number, max: number): number  // Zufallsganzzahl
+suggestion unconsciousBool(): boolean  // Zufälliger boolean
+```
+
+**Beispiel:**
+
+```plaintext
+Focus {
+    induce radius: number = 5.0;
+    induce area: number = hypnoticPi() * power(radius, 2);
+    observe "Kreisfläche: " + area;
+    
+    induce angle: number = 45.0;
+    induce sine: number = pendulumSin(angle);
+    observe "Sinus von " + angle + " Grad: " + sine;
+    
+    induce randomNum: number = unconsciousInt(1, 100);
+    observe "Zufällige Zahl: " + randomNum;
+} Relax
+```
+
+### 6.3 StringSpell (String-Manipulation)
+
+StringSpell bietet mächtige String-Manipulationsfunktionen mit hypnotischen Metaphern.
+
+```plaintext
+// Länge und Zugriff
+suggestion measureDepth(str: string): number  // Länge des Strings
+suggestion extractEssence(str: string, index: number): string  // Zeichen an Position
+suggestion sliceMemory(str: string, start: number, end: number): string  // Substring
+
+// Suchen und Ersetzen
+suggestion findPattern(str: string, pattern: string): number  // indexOf
+suggestion containsPattern(str: string, pattern: string): boolean  // includes
+suggestion replaceMemory(str: string, old: string, new: string): string  // replace
+suggestion replaceAllMemories(str: string, old: string, new: string): string  // replaceAll
+
+// Transformation
+suggestion toUpper(str: string): string  // In Großbuchstaben (LAUTER BEFEHL)
+suggestion toLower(str: string): string  // In Kleinbuchstaben (sanftes Flüstern)
+suggestion trimEdges(str: string): string  // Entfernt Whitespace an den Rändern
+suggestion reverseTrance(str: string): string  // Kehrt String um
+
+// Zerlegung und Zusammenfügung
+suggestion fragmentMemory(str: string, delimiter: string): string[]  // split
+suggestion mergeThoughts(arr: string[], separator: string): string  // join
+suggestion repeatMantra(str: string, times: number): string  // String wiederholen
+
+// Prüfungen
+suggestion startsWithSuggestion(str: string, prefix: string): boolean
+suggestion endsWithAwakening(str: string, suffix: string): boolean
+suggestion matchesPattern(str: string, regex: string): boolean  // Regex-Match
+```
+
+**Beispiel:**
+
+```plaintext
+Focus {
+    induce message: string = "  Willkommen in der Trance  ";
+    induce cleaned: string = trimEdges(message);
+    observe cleaned;
+    
+    induce words: string[] = fragmentMemory(cleaned, " ");
+    observe "Anzahl Wörter: " + measureDepth(words);
+    
+    induce mantra: string = repeatMantra("Om ", 3);
+    observe mantra;  // "Om Om Om "
+    
+    induce reversed: string = reverseTrance("Trance");
+    observe reversed;  // "ecnarT"
+} Relax
+```
+
+### 6.4 MemoryPalace (Datenstrukturen)
+
+MemoryPalace bietet Funktionen für Arrays und erweiterte Datenstrukturen.
+
+```plaintext
+// Array-Grundfunktionen
+suggestion createVault(size: number): any[]  // Erstellt Array mit Größe
+suggestion storeMemory(arr: any[], value: any): number  // push - gibt neue Länge zurück
+suggestion retrieveLastMemory(arr: any[]): any  // pop
+suggestion peekAtMemory(arr: any[], index: number): any  // Array-Zugriff
+suggestion implantMemory(arr: any[], index: number, value: any)  // Setze Wert an Index
+
+// Array-Manipulation
+suggestion reverseMemories(arr: any[]): any[]  // Kehrt Array um
+suggestion sortMemories(arr: any[]): any[]  // Sortiert Array
+suggestion filterMemories(arr: any[], predicate: suggestion): any[]  // filter
+suggestion mapMemories(arr: any[], transformer: suggestion): any[]  // map
+suggestion reduceToEssence(arr: any[], reducer: suggestion, initial: any): any  // reduce
+
+// Array-Suche
+suggestion findMemory(arr: any[], value: any): number  // indexOf
+suggestion containsMemory(arr: any[], value: any): boolean  // includes
+suggestion countOccurrences(arr: any[], value: any): number  // Zählt Vorkommen
+
+// Array-Info
+suggestion vaultSize(arr: any[]): number  // Länge
+suggestion isEmptyVault(arr: any[]): boolean  // Ist leer
+suggestion firstMemory(arr: any[]): any  // Erstes Element
+suggestion lastMemory(arr: any[]): any  // Letztes Element
+
+// Erweiterte Strukturen (Maps/Dictionaries)
+session MemoryMap {
+    expose suggestion constructor()
+    expose suggestion store(key: string, value: any)
+    expose suggestion retrieve(key: string): any
+    expose suggestion forget(key: string)
+    expose suggestion hasKey(key: string): boolean
+    expose suggestion allKeys(): string[]
+    expose suggestion allValues(): any[]
+}
+
+// Stack (LIFO)
+session MindStack {
+    expose suggestion constructor()
+    expose suggestion push(value: any)
+    expose suggestion pop(): any
+    expose suggestion peek(): any
+    expose suggestion isEmpty(): boolean
+    expose suggestion size(): number
+}
+
+// Queue (FIFO)
+session ThoughtQueue {
+    expose suggestion constructor()
+    expose suggestion enqueue(value: any)
+    expose suggestion dequeue(): any
+    expose suggestion isEmpty(): boolean
+    expose suggestion size(): number
+}
+```
+
+**Beispiel:**
+
+```plaintext
+Focus {
+    // Array-Operationen
+    induce memories: number[] = [1, 2, 3, 4, 5];
+    induce doubled = mapMemories(memories, suggestion(x: number): number {
+        awaken x * 2;
+    });
+    observe doubled;  // [2, 4, 6, 8, 10]
+    
+    // Stack verwenden
+    induce stack = MindStack();
+    stack.push(10);
+    stack.push(20);
+    stack.push(30);
+    observe stack.pop();  // 30
+    observe stack.peek();  // 20
+    
+    // Map verwenden
+    induce map = MemoryMap();
+    map.store("name", "Alice");
+    map.store("age", 30);
+    observe map.retrieve("name");  // "Alice"
+} Relax
+```
+
+### 6.5 TimeWarp (Zeit- und Datumsfunktionen)
+
+TimeWarp ermöglicht Zeit- und Datumsmanipulation mit hypnotischen Konzepten.
+
+```plaintext
+// Aktuelle Zeit
+suggestion nowInTrance(): number  // Aktuelle Timestamp (Millisekunden seit Epoch)
+suggestion currentMoment(): string  // Aktuelles Datum/Zeit als String
+
+// Zeit-Manipulation
+suggestion pauseReality(ms: number)  // Entspricht drift(ms) - pausiert Ausführung
+suggestion accelerateTime(factor: number)  // Beschleunigt nachfolgende Operationen (konzeptionell)
+suggestion decelerateTime(factor: number)  // Verlangsamt nachfolgende Operationen
+
+// Datum-Parsing und Formatierung
+suggestion parseTimeMoment(dateStr: string): number  // String zu Timestamp
+suggestion formatTimeMoment(timestamp: number, format: string): string  // Timestamp zu formatiertem String
+
+// Datum-Arithmetik
+suggestion addDays(timestamp: number, days: number): number
+suggestion addHours(timestamp: number, hours: number): number
+suggestion addMinutes(timestamp: number, minutes: number): number
+suggestion differenceInDays(ts1: number, ts2: number): number
+suggestion differenceInHours(ts1: number, ts2: number): number
+
+// Datum-Komponenten
+suggestion extractYear(timestamp: number): number
+suggestion extractMonth(timestamp: number): number
+suggestion extractDay(timestamp: number): number
+suggestion extractHour(timestamp: number): number
+suggestion extractMinute(timestamp: number): number
+suggestion extractSecond(timestamp: number): number
+```
+
+**Beispiel:**
+
+```plaintext
+Focus {
+    induce now: number = nowInTrance();
+    observe "Aktueller Timestamp: " + now;
+    
+    induce tomorrow: number = addDays(now, 1);
+    induce formatted: string = formatTimeMoment(tomorrow, "YYYY-MM-DD");
+    observe "Morgen: " + formatted;
+    
+    pauseReality(2000);  // Warte 2 Sekunden
+    observe "2 Sekunden später...";
+} Relax
+```
+
+### 6.6 DeepMind (Erweiterte Kontrollstrukturen)
+
+DeepMind bietet erweiterte Kontrollfluss- und Funktionskompositionswerkzeuge.
+
+```plaintext
+// Wiederholungen mit Callbacks
+suggestion repeatAction(times: number, action: suggestion)
+suggestion repeatUntil(condition: suggestion, action: suggestion)
+suggestion repeatWhile(condition: suggestion, action: suggestion)
+
+// Verzögerte Ausführung
+suggestion delayedSuggestion(action: suggestion, delayMs: number)
+suggestion scheduleAwakening(action: suggestion, timestamp: number)
+
+// Funktionskomposition
+suggestion compose(f: suggestion, g: suggestion): suggestion  // f(g(x))
+suggestion pipe(f: suggestion, g: suggestion): suggestion     // g(f(x))
+suggestion curry(f: suggestion, arg: any): suggestion         // Partial application
+
+// Bedingte Ausführung
+suggestion ifTranced(condition: boolean, thenAction: suggestion, elseAction: suggestion)
+suggestion switchMindState(value: any, cases: MemoryMap, defaultCase: suggestion)
+
+// Fehlerbehandlung (Awakening from Nightmare)
+suggestion tryOrAwaken(action: suggestion, recoveryAction: suggestion)
+suggestion ensureAwakening(action: suggestion, cleanupAction: suggestion)  // try-finally
+
+// Async/Concurrency (Parallele Trancen)
+suggestion parallelTrance(actions: suggestion[])  // Führt mehrere Aktionen parallel aus
+suggestion sequentialTrance(actions: suggestion[])  // Führt Aktionen nacheinander aus
+```
+
+**Beispiel:**
+
+```plaintext
+Focus {
+    // Wiederhole eine Aktion 5 mal
+    repeatAction(5, suggestion() {
+        observe "In Trance...";
+    });
+    
+    // Verzögerte Ausführung
+    observe "Vor der Verzögerung";
+    delayedSuggestion(suggestion() {
+        observe "Nach 3 Sekunden";
+    }, 3000);
+    
+    // Bedingte Ausführung
+    induce x: number = 10;
+    ifTranced(x lookAtTheWatch 5, 
+        suggestion() { observe "x ist größer als 5"; },
+        suggestion() { observe "x ist nicht größer als 5"; }
+    );
+} Relax
+```
+
+### 6.7 SensoryInput (Ein-/Ausgabe-Funktionen)
+
+SensoryInput erweitert die Ein- und Ausgabemöglichkeiten von HypnoScript.
+
+```plaintext
+// Ausgabe-Funktionen
+suggestion observe(message: any)  // Standard-Ausgabe mit Zeilenumbruch
+suggestion whisper(message: any)  // Ausgabe ohne Zeilenumbruch
+suggestion command(message: any)  // Fett/hervorgehobene Ausgabe
+suggestion murmur(message: any)   // Gedämpfte/Debug-Ausgabe
+
+// Formatierte Ausgabe
+suggestion observeFormatted(template: string, ...args: any[])  // String-Interpolation
+suggestion observeTable(data: any[][])  // Gibt Tabelle aus
+suggestion observeJson(obj: any)  // Gibt JSON-formatiert aus
+
+// Eingabe-Funktionen
+suggestion requestInput(prompt: string): string  // Fordert Benutzer-Eingabe an
+suggestion requestNumber(prompt: string): number  // Fordert Zahl an
+suggestion requestConfirmation(prompt: string): boolean  // Ja/Nein-Frage
+suggestion requestChoice(prompt: string, options: string[]): number  // Mehrfachauswahl
+
+// Datei-I/O (konzeptionell)
+suggestion absorbFromScroll(filename: string): string  // Liest Datei
+suggestion manifestToScroll(filename: string, content: string)  // Schreibt Datei
+suggestion appendToScroll(filename: string, content: string)  // Hängt an Datei an
+
+// Stream-Ausgabe (fortgeschritten)
+suggestion observeStream(generator: suggestion)  // Stream-basierte Ausgabe
+suggestion collectThoughts(): string[]  // Sammelt alle bisherigen Ausgaben
+```
+
+**Beispiel:**
+
+```plaintext
+Focus {
+    // Verschiedene Ausgabearten
+    observe "Normale Ausgabe";
+    whisper "Ohne Zeilenumbruch... ";
+    whisper "zusammen!";
+    observe "";  // Zeilenumbruch
+    command "WICHTIGE NACHRICHT!";
+    murmur "Debug-Info: x=42";
+    
+    // Formatierte Ausgabe
+    induce name: string = "Alice";
+    induce age: number = 30;
+    observeFormatted("Name: {}, Alter: {}", name, age);
+    
+    // Tabellen-Ausgabe
+    induce data: any[][] = [
+        ["Name", "Alter"],
+        ["Alice", 30],
+        ["Bob", 25]
+    ];
+    observeTable(data);
+    
+    // Benutzer-Eingabe
+    induce userName: string = requestInput("Wie heißt du? ");
+    observe "Hallo, " + userName + "!";
+    
+    induce userAge: number = requestNumber("Wie alt bist du? ");
+    if (userAge yourEyesAreGettingHeavy 18) {
+        observe "Du bist volljährig!";
+    }
+} Relax
+```
+
+---
+
+## **7. Beispielprogramme**
+
+### 7.1 Einfaches „Hello Trance!“
 
 ```plaintext
 Focus {
@@ -517,7 +1043,7 @@ Hello Trance!
 
 ---
 
-### 6.2 Summierung mit Input
+### 7.2 Summierung mit Input
 
 ```plaintext
 Focus {
@@ -539,9 +1065,9 @@ _(Implementierungsspezifisch muss natürlich definiert sein, wie „from externa
 
 ---
 
-### 6.3 Verwendung erweiterter Konzepte
+### 7.3 Verwendung erweiterter Konzepte
 
-#### 6.3.1 `session`, `drift`, Operator-Synonyme
+#### 7.3.1 `session`, `drift`, Operator-Synonyme
 
 ```plaintext
 Focus {
