@@ -37,6 +37,10 @@
       - [3.5.5 Muster-Entraining: `entrain`](#355-muster-entraining-entrain)
       - [3.5.6 Asynchrone Trance: `mesmerize` \& `await`](#356-asynchrone-trance-mesmerize--await)
       - [3.5.7 Module \& gemeinsame Trancen](#357-module--gemeinsame-trancen)
+    - [Beispiel 1: Cleanup-Trigger](#beispiel-1-cleanup-trigger)
+    - [Beispiel 2: Event-Handler für Wiederholungen](#beispiel-2-event-handler-für-wiederholungen)
+    - [Beispiel 3: Parametrisierte Trigger](#beispiel-3-parametrisierte-trigger)
+    - [Beispiel 4: Trigger in Sessions](#beispiel-4-trigger-in-sessions)
       - [3.5.9 Hypnotische Werkzeuge (Best-of)](#359-hypnotische-werkzeuge-best-of)
   - [**4. Grammatik (EBNF)**](#4-grammatik-ebnf)
   - [**5. Semantik**](#5-semantik)
@@ -353,16 +357,16 @@ Wo andere Sprachen nüchtern vergleichen, flüstert HypnoScript beschwörende Fo
 
 ##### Tafel der klassischen Suggestionen
 
-| Standard-Operator           | Hypnotisches Synonym      | Bedeutung           |
-| --------------------------- | ------------------------- | ------------------- |
-| `==`                        | `youAreFeelingVerySleepy` | Gleichheit          |
-| `!=`                        | `youCannotResist`         | Ungleichheit        |
-| `>`                         | `lookAtTheWatch`          | Größer als          |
-| `<`                         | `fallUnderMySpell`        | Kleiner als         |
-| `>=`                        | `yourEyesAreGettingHeavy` | Größer oder gleich  |
-| `<=`                        | `goingDeeper`             | Kleiner oder gleich |
-| `&&`                        | `underMyControl`          | Logisches UND       |
-| `\|\|` | `resistanceIsFutile`      | Logisches ODER      |
+| Standard-Operator | Hypnotisches Synonym      | Bedeutung           |
+| ----------------- | ------------------------- | ------------------- |
+| `==`              | `youAreFeelingVerySleepy` | Gleichheit          |
+| `!=`              | `youCannotResist`         | Ungleichheit        |
+| `>`               | `lookAtTheWatch`          | Größer als          |
+| `<`               | `fallUnderMySpell`        | Kleiner als         |
+| `>=`              | `yourEyesAreGettingHeavy` | Größer oder gleich  |
+| `<=`              | `goingDeeper`             | Kleiner oder gleich |
+| `&&`              | `underMyControl`          | Logisches UND       |
+| `\|\|`            | `resistanceIsFutile`      | Logisches ODER      |
 
 ##### Moderne Traum-Semantik
 
@@ -515,7 +519,7 @@ trigger triggerName = suggestion(parameterList) {
 3. **Callback-Funktionen**: Als Parameter für höhere Funktionen (DeepMind, MemoryPalace)
 4. **State-Management**: Zustandsänderungs-Handler in komplexen Sessions
 
-**Beispiel 1: Cleanup-Trigger**
+### Beispiel 1: Cleanup-Trigger
 
 ```plaintext
 Focus {
@@ -536,7 +540,7 @@ Focus {
 } Relax
 ```
 
-**Beispiel 2: Event-Handler für Wiederholungen**
+### Beispiel 2: Event-Handler für Wiederholungen
 
 ```plaintext
 Focus {
@@ -554,7 +558,7 @@ Focus {
 } Relax
 ```
 
-**Beispiel 3: Parametrisierte Trigger**
+### Beispiel 3: Parametrisierte Trigger
 
 ```plaintext
 Focus {
@@ -570,7 +574,7 @@ Focus {
 } Relax
 ```
 
-**Beispiel 4: Trigger in Sessions**
+### Beispiel 4: Trigger in Sessions
 
 ```plaintext
 session HypnoTimer {
