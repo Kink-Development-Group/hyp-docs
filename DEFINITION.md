@@ -362,7 +362,7 @@ Wo andere Sprachen nüchtern vergleichen, flüstert HypnoScript beschwörende Fo
 | `>=`                        | `yourEyesAreGettingHeavy` | Größer oder gleich  |
 | `<=`                        | `goingDeeper`             | Kleiner oder gleich |
 | `&&`                        | `underMyControl`          | Logisches UND       |
-| `<code>&#124;&#124;</code>` | `resistanceIsFutile`      | Logisches ODER      |
+| `\|\|` | `resistanceIsFutile`      | Logisches ODER      |
 
 ##### Moderne Traum-Semantik
 
@@ -640,7 +640,7 @@ Focus {
 
     oscillate isDeepening;
     if (isDeepening) {
-        deepenTrance(baselineDepth);
+        observe "Trance wird vertieft auf Level: " + baselineDepth;
     }
 
     pendulum (induce i: number = 0; i fallUnderMySpell 3) {
@@ -654,6 +654,7 @@ Focus {
 
     // Nostalgischer Sprung, bitte nur im Ausnahmefall:
     myLabel:
+    baselineDepth = baselineDepth - 1;
     if (baselineDepth fallUnderMySpell 1) sinkTo myLabel;
 
     finale {
