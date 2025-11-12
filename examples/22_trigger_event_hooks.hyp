@@ -99,24 +99,25 @@ Focus {
 
   observe "Finale Stage: " + stage;
 
-  // Beispiel 6: Trigger in Session
+  // Beispiel 6: Callbacks in Sessions (ohne verschachtelte Trigger)
   observe "";
-  observe "--- Beispiel 6: Trigger in Session-Klassen ---";
+  observe "--- Beispiel 6: Callbacks in Session-Klassen ---";
 
   session EventEmitter {
       expose eventCount: number;
-      conceal onEventTrigger: trigger;
+      conceal eventHandler: suggestion;
 
       suggestion constructor() {
           this.eventCount = 0;
-          this.onEventTrigger = trigger handleEvent = suggestion(eventName: string) {
+          // Anonyme suggestion-Expression für Callback
+          this.eventHandler = suggestion(eventName: string) {
               this.eventCount = this.eventCount + 1;
               observe "📢 Event empfangen: " + eventName + " (Total: " + this.eventCount + ")";
           };
       }
 
       suggestion emit(eventName: string) {
-          this.onEventTrigger(eventName);
+          call this.eventHandler(eventName);
       }
   }
 
@@ -127,33 +128,33 @@ Focus {
 
   observe "Gesamte Events verarbeitet: " + emitter.eventCount;
 
-  // Beispiel 7: Verschachtelte Trigger
+  // Beispiel 7: Top-Level Trigger mit Session-Interaktion
   observe "";
-  observe "--- Beispiel 7: Verschachtelte Trigger ---";
+  observe "--- Beispiel 7: Top-Level Trigger für Sessions ---";
 
-  induce depth: number = 0;
+  session Counter {
+      expose value: number;
 
-  trigger levelOne = suggestion() {
-      depth = depth + 1;
-      observe "Level 1 - Depth: " + depth;
+      suggestion constructor() {
+          this.value = 0;
+      }
 
-      trigger levelTwo = suggestion() {
-          depth = depth + 1;
-          observe "  Level 2 - Depth: " + depth;
+      suggestion increment() {
+          this.value = this.value + 1;
+      }
+  }
 
-          trigger levelThree = suggestion() {
-              depth = depth + 1;
-              observe "    Level 3 - Depth: " + depth;
-          };
-
-          levelThree();
-      };
-
-      levelTwo();
+  trigger onCounterUpdate = suggestion(counter: Counter, label: string) {
+      counter.increment();
+      observe label + " - Neuer Wert: " + counter.value;
   };
 
-  levelOne();
-  observe "Finale Verschachtelungstiefe: " + depth;
+  induce myCounter = Counter();
+  onCounterUpdate(myCounter, "Update 1");
+  onCounterUpdate(myCounter, "Update 2");
+  onCounterUpdate(myCounter, "Update 3");
+
+  observe "Finale Counter-Wert: " + myCounter.value;
 
   // Beispiel 8: Asynchroner Trigger mit delayed execution
   observe "";
@@ -183,10 +184,12 @@ Focus {
       observe "  • Verbindung: " + connectionOpen;
       observe "  • Tick-Zähler: " + tickCount;
       observe "  • Event-Zähler: " + emitter.eventCount;
+      observe "  • Counter-Wert: " + myCounter.value;
 
       observe "";
       observe "=== Trigger-Demo abgeschlossen ===";
-      observe "Trigger sind First-Class Citizens in HypnoScript! ✨";
+      observe "Trigger sind Top-Level Event-Hooks in HypnoScript! ✨";
+      observe "Für lokale Callbacks: verwende anonyme suggestion-Expressions";
   }
 
 } Relax

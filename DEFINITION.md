@@ -37,6 +37,7 @@
       - [3.5.5 Muster-Entraining: `entrain`](#355-muster-entraining-entrain)
       - [3.5.6 Asynchrone Trance: `mesmerize` \& `await`](#356-asynchrone-trance-mesmerize--await)
       - [3.5.7 Module \& gemeinsame Trancen](#357-module--gemeinsame-trancen)
+      - [3.5.8 Trigger: Event-Hooks \& Callback-Mechanismen](#358-trigger-event-hooks--callback-mechanismen)
     - [Beispiel 1: Cleanup-Trigger](#beispiel-1-cleanup-trigger)
     - [Beispiel 2: Event-Handler für Wiederholungen](#beispiel-2-event-handler-für-wiederholungen)
     - [Beispiel 3: Parametrisierte Trigger](#beispiel-3-parametrisierte-trigger)
@@ -358,7 +359,7 @@ Wo andere Sprachen nüchtern vergleichen, flüstert HypnoScript beschwörende Fo
 ##### Tafel der klassischen Suggestionen
 
 | Standard-Operator | Hypnotisches Synonym      | Bedeutung           |
-| ----------------- | ------------------------- | ------------------- |
+| ----------------- | ------------------------- | ------------------- | -------------------- | -------------- |
 | `==`              | `youAreFeelingVerySleepy` | Gleichheit          |
 | `!=`              | `youCannotResist`         | Ungleichheit        |
 | `>`               | `lookAtTheWatch`          | Größer als          |
@@ -366,7 +367,7 @@ Wo andere Sprachen nüchtern vergleichen, flüstert HypnoScript beschwörende Fo
 | `>=`              | `yourEyesAreGettingHeavy` | Größer oder gleich  |
 | `<=`              | `goingDeeper`             | Kleiner oder gleich |
 | `&&`              | `underMyControl`          | Logisches UND       |
-| `||`              | `resistanceIsFutile`      | Logisches ODER      |
+| `                 |                           | `                   | `resistanceIsFutile` | Logisches ODER |
 
 ##### Moderne Traum-Semantik
 
@@ -495,11 +496,14 @@ imperative suggestion incrementVisitors() {
 - `sharedTrance` deklariert modulweite Zustände (ggf. mit `freeze`).
 - `manifest` (optional) kann verwendet werden, um Assets zu exportieren (Implementierungsdetail des Toolings).
 
-`trigger` ist ein mächtiges Werkzeug zum Definieren von Event-Hooks, Callbacks und verzögerten Aktionen. Ein Trigger bindet eine Funktions-Expression an einen Bezeichner und kann später explizit aufgerufen oder als Reaktion auf bestimmte Ereignisse ausgelöst werden.
+#### 3.5.8 Trigger: Event-Hooks & Callback-Mechanismen
+
+`trigger` ist ein mächtiges Werkzeug zum Definieren von Top-Level Event-Hooks, Callbacks und verzögerten Aktionen. Ein Trigger bindet eine Funktions-Expression an einen Bezeichner auf Programm- oder Modul-Ebene und kann später explizit aufgerufen oder als Reaktion auf bestimmte Ereignisse ausgelöst werden.
 
 **Syntax:**
 
 ```plaintext
+// Nur auf Top-Level (außerhalb von Funktionen/Sessions/Blöcken)
 trigger triggerName = suggestion(parameterList) {
     // Trigger-Code
 };
@@ -507,6 +511,7 @@ trigger triggerName = suggestion(parameterList) {
 
 **Eigenschaften:**
 
+- **Top-Level Only**: Triggers können **nur** auf Programm- oder Modul-Ebene deklariert werden (nicht innerhalb von Funktionen, Sessions oder Blöcken)
 - **Deklarativ**: Triggers werden wie Variablen deklariert, binden aber Funktionslogik
 - **First-Class**: Können als Parameter übergeben, in Datenstrukturen gespeichert und dynamisch aufgerufen werden
 - **Event-Orientiert**: Ideal für Event-Handler, Callbacks, Cleanup-Aktionen und verzögerte Ausführungen
@@ -577,20 +582,25 @@ Focus {
 ### Beispiel 4: Trigger in Sessions
 
 ```plaintext
+// Trigger als Top-Level-Deklaration außerhalb der Session
+trigger onSecondElapsed = suggestion(timer: HypnoTimer) {
+    timer.elapsedSeconds = timer.elapsedSeconds + 1;
+    observe "Verstrichene Zeit: " + timer.elapsedSeconds + "s";
+};
+
 session HypnoTimer {
     expose elapsedSeconds: number;
-    conceal tickTrigger: trigger;
 
     suggestion constructor() {
         this.elapsedSeconds = 0;
-        this.tickTrigger = trigger onSecondElapsed = suggestion() {
-            this.elapsedSeconds = this.elapsedSeconds + 1;
-            observe "Verstrichene Zeit: " + this.elapsedSeconds + "s";
-        };
     }
 
     suggestion start() {
-        repeatAction(10, this.tickTrigger);
+        // Verwende externen Trigger mit Partial Application
+        induce boundTick = suggestion() {
+            onSecondElapsed(this);
+        };
+        repeatAction(10, boundTick);
     }
 }
 
@@ -602,17 +612,42 @@ Focus {
 
 **Unterschied zu normalen Funktionen:**
 
-| Aspekt      | `suggestion`                            | `trigger`                                   |
-| ----------- | --------------------------------------- | ------------------------------------------- |
-| Deklaration | `suggestion name(params): type { ... }` | `trigger name = suggestion(params) { ... }` |
-| Semantik    | Wiederverwendbare Funktion              | Event-Handler/Callback                      |
-| Verwendung  | Allgemeine Logik                        | Ereignisgesteuert                           |
-| Konvention  | Algorithmen, Berechnungen               | Reaktionen, Cleanup, Events                 |
+| Aspekt             | `suggestion`                            | `trigger`                                   |
+| ------------------ | --------------------------------------- | ------------------------------------------- |
+| Deklaration        | `suggestion name(params): type { ... }` | `trigger name = suggestion(params) { ... }` |
+| Gültigkeitsbereich | Block-Level (lokal/global)              | Nur Top-Level (Programm/Modul-Scope)        |
+| Semantik           | Wiederverwendbare Funktion              | Event-Handler/Callback                      |
+| Verwendung         | Allgemeine Logik                        | Ereignisgesteuert                           |
+| Konvention         | Algorithmen, Berechnungen               | Reaktionen, Cleanup, Events                 |
+
+**Wichtige Einschränkungen:**
+
+- `trigger` kann **nur auf Top-Level** deklariert werden (nicht innerhalb von Sessions, Funktionen oder Blöcken)
+- Für Callback-Felder in Sessions verwende anonyme `suggestion`-Expressions direkt: `this.callback = suggestion() { ... };`
+- Triggers können als Werte zugewiesen und als Parameter übergeben werden (First-Class)
+
+**Alternative: Anonyme Suggestion-Expressions für lokale Callbacks**
+
+Wenn du Callbacks innerhalb von Sessions oder Funktionen benötigst, verwende direkt anonyme `suggestion`-Expressions:
+
+```plaintext
+session MySession {
+    conceal localCallback: suggestion;
+
+    suggestion constructor() {
+        // Anonyme suggestion-Expression (kein trigger!)
+        this.localCallback = suggestion(value: number) {
+            observe "Callback aufgerufen mit: " + value;
+        };
+    }
+}
+```
 
 **Best Practices:**
 
-- Verwende `trigger` für Event-Handler und Callbacks
+- Verwende `trigger` für Top-Level Event-Handler und globale Callbacks
 - Benenne Triggers mit Präfix `on` für Klarheit (`onAwaken`, `onError`, `onComplete`)
+- Für lokale Callbacks innerhalb von Sessions/Funktionen: nutze anonyme `suggestion() { ... }`
 - Kombiniere mit `finale`-Blöcken für garantierte Ausführung
 - Nutze Triggers in Kombination mit DeepMind-Funktionen für elegante Kontrollflüsse
 
@@ -735,7 +770,7 @@ ObserveStatement ::= "observe" Expression ";" ;
 WhisperStatement ::= "whisper" Expression ";" ;
 CommandStatement ::= "command" Expression ";" ;
 
-DriftStatement   ::= ("drift" | "pauseReality") "(" Expression ")" ";" 
+DriftStatement   ::= ("drift" | "pauseReality") "(" Expression ")" ";"
                    | "suspend" ";" ;
 
 AnchorStatement  ::= "anchor" Identifier "=" Expression ";" ;
